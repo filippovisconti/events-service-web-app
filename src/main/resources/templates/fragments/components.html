@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="baseHead(title)">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
+	<!-- default styles and scripts -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
+
+</head>
+
+<head th:fragment="baseHeadLinks(title, links)">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+
+	<title th:replace="${title}">Catering Service | Filippo Visconti.</title>
+	<!-- default styles and scripts -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
+
+	<th:block th:replace="${links}" />
+
+</head>
+
+<header>
+	This is the header
+	<a href="/index.html" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
+	<a href="/index.html" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a> -
+	<a href="/index.html" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
+	<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+</header>
+
+<body>
+	This will be the body
+	<p>Some text with a <a href="http://www.filippovisconti.com">link</a>.</p>
+</body>
+
+<footer th:fragment="footer">
+	<div id="copyright">
+		<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a></p>
+	</div>
+	<div id="footer-links">
+		<span>
+			<a href="/index.html" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
+			<a href="/index.html" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a> -
+			<a href="/index.html" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
+			<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+		</span>
+
+	</div>
+</footer>
+
+</html>

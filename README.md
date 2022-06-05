@@ -1,56 +1,60 @@
-# siw-catering-service
+# siw-events-service
 
-A web app that helps in the management of a catering service, built with Java, Maven, Springbok and deployed to GCP
+A web app that helps in the management of an event management company, built with Springboot and deployed to Azure
 
-Dobbiamo progettare e implementare il sistema informativo di una società che offre servizi di catering.
+### Requisites
 
-La società offre diversi buffet:
-ogni buffet è
-proposto da uno chef e
-contiene uno o più piatti.
-Ogni buffet
-ha un nome e
-una descrizione.
+We are going to design and implement a web application for an event management company.
 
-Uno chef può
-proporre uno o più buffet.
-Per ogni chef sono di interesse
-nome, cognome, nazionalità.
+The company can take care of various types of events:
+each event has
 
+- a name,
+- a description,
+- an organizer,
+- a start time,
+- a duration,
+- a list of one or more activities,
+- and a list of participants.
 
-Per ogni piatto proposto in un buffet sono di interesse
-il nome,
-una descrizione,
-l'elenco degli ingredienti.
+An organizer can take care of one or more events.
 
-Per ogni ingrediente è di interesse
-il nome,
-l'origine,
-una descrizione.
+For each organizer, it's
 
-Le specifiche possono essere completate dal candidato, laddove ritenuto necessario.
+- first name,
+- last name
+- and place of birth
 
-Possono accedere al sistema
-utenti generici e
-un amministratore.
+are of interest.
 
-L’amministratore, previa autenticazione, può
-inserire,
-modificare,
-cancellare le informazioni relative
-ai buffet,
-agli chef,
-ai piatti
+For each proposed activity, we need to keep track of
 
-L’utente generico può accedere alle informazioni della società
-attraverso diversi percorsi di navigazione, opportunamente predisposti (ad esempio, per chef, oppure per buffet, etc.)
+- name,
+- description,
+- duration (number of hours),
+- (a list of) necessary pieces of equipment
 
-Progettare il sistema, definendone casi d’uso, class diagram (con indicazioni utili alla progettazione dello strato di persistenza).
-Implementare almeno 4 casi d’uso:
+For each piece of equipment (or tool), it's going to be recorded
 
-    almeno due che abbiamo come attore l’amministratore (almeno uno di inserimento dati ed almeno uno di aggiornamento dati)
+- its name,
+- description,
+- and cost.
 
-    almeno due che abbiano come attore l’utente generico
+The system can be accessed by administrators and standard users.
+The viewing of the events is available without authentication, whereas everything else needs the user to be logged in.
+Standard users can sign up for any event, and browse through all of the detail pages, but no editing will be allowed.
+Standard user will be able to see the list of events which they have signed up for.
 
-Implementare il sistema con Spring Boot. Saranno oggetto di valutazione anche la qualità del codice e la qualità dell’interfaccia HTML+CSS.
-Il deploy su una piattaforma cloud (ad esempio AWS) e l’autenticazione tramite Oauth saranno considerati un plus.
+Admins, instead, can create every object and manage every single aspect of the system.
+
+### URI standard
+
+Resources available to **unauthenticated** users will start with the "/public/" prefix.
+
+Resources only available to **authenticated** users will start with the "/protected/" prefix.
+
+Resources only available to **administrators** will start with the "/admin/" prefix.
+
+### Class diagram
+
+For a better understanding of the persistence layer, a class diagram is available as PDF and also as editable .drawio file.

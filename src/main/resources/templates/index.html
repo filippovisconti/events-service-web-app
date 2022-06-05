@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+    xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
+    <title>Public Home Page - Catering Service </title>
+    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
+    <link th:href="@{/css/indexPage.css}" rel="stylesheet" href="../../static/css/indexPage.css">
+
+</head>
+<header>
+    <h1 class="header-title">Catering Service</h1>
+</header>
+
+<body>
+
+    <div class="center">
+
+        <h2 class="welcome-text">Welcome to the public interface of the Catering Service.</h2>
+
+        <table class="greyGridTable">
+            <tbody>
+                <tr>
+                    <td><a class="button button1" href="/login.html" th:href="@{/admin}">Administration</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="button button2" href="/public" th:href="@{/public}">Explore buffets and
+                            details</a></td>
+                </tr>
+                <tr>
+                    <td><a class="button button3" href="/register" th:href="@{/register}">Register</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<footer th:replace="fragments/components :: footer">
+    <div id="footer-links">
+        <span><a href="/index.html">HomeTEST</a> - </span>
+        <a href="/index.html" th:href="@{/logout}">Logout </a>
+    </div>
+</footer>
+
+</html>
