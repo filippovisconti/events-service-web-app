@@ -11,6 +11,7 @@
 	<link th:href="@{/static/bootstrap/css/bootstrap.css}" href="../../static/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/static/custom/base.css}" href="../../static/custom/base.css" rel="stylesheet">
+	<link th:href="@{/static/custom/test.css}" href="../../static/custom/test.css" rel="stylesheet">
 
 	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
 
@@ -18,8 +19,10 @@
 
 </head>
 
-<body class="text-center">
+<body class="text-center bg">
+
 	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+
 		<header class="masthead mb-auto" th:fragment="footer">
 			<div class="inner">
 				<h3 class="masthead-brand">Cover</h3>
@@ -39,7 +42,21 @@
 				<a href="#" class="btn btn-lg btn-secondary">Learn more</a>
 			</p>
 		</main>
-
+		<!--<div>
+			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+				<defs>
+					<path id="gentle-wave"
+						d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+				</defs>
+				<g class="parallax">
+					<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+					<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+					<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+					<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+				</g>
+			</svg>
+		</div>-->
 		<footer class="mastfoot mt-auto" th:fragment="footer">
 			<div class="inner">
 				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a></p>

@@ -22,50 +22,59 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String showLoginForm (Model model) {
-		return "loginForm";
+		return "login/loginForm";
 	}
 
 	@GetMapping("/logout")
-	public String logout(Model model) {
-		return "redirect:/public";
+	public String logout (Model model) {
+		return "redirect:/";
 	}
 
 	@GetMapping("/register")
-	public String getRegisterPage(Model model) {
+	public String getRegisterPage (Model model) {
 		model.addAttribute("credentials", new Credentials());
-		return "signUpForm";
+		return "login/signUpForm";
 	}
 
 	@PostMapping("/register")
 	public String register (@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult, Model model) {
-		String nextPage;
 		if (!bindingResult.hasErrors()) {
 			//credentials.setRole("DEFAULT");
 			this.credentialsService.saveCredentials(credentials);
-			nextPage = "loginForm.html";
+			return "login/loginForm";
 		} else {
 			model.addAttribute("credentials", credentials);
-			nextPage = "signUpForm.html";
+			return "login/signUpForm";
 		}
-		return nextPage;
-
-	}
-
-	@GetMapping("/admin")
-	//@IsStdUser
-	public String getHomePage () {
-		String nextPage = "admin_index.html";
-		return nextPage;
 	}
 
 	@GetMapping("/default")
-	public String defaultAfterLogin(Model model) {
+	public String defaultAfterLogin (Model model) {
 
 		UserDetails adminDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(adminDetails.getUsername());
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			return "redirect:/admin";
+		} else if (credentials.getRole().equals(Credentials.DEFAULT_ROLE)) {
+			return "redirect:/user";
 		}
 		return "redirect:/login";
+	}
+
+	@GetMapping("/admin")
+	public String getAdminHomePage () {
+		return "indexes/admin_index";
+	}
+
+
+	@GetMapping("/user")
+	public String getUserHomePage () {
+		return "indexes/user_index";
+	}
+
+
+	@GetMapping("/")
+	public String getPublicHomePage () {
+		return "indexes/index";
 	}
 }
