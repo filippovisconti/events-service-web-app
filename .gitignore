@@ -34,3 +34,4 @@ build/
 .DS_Store
 *.bkp
 /src/main/resources/templates/fragments/howTo.txt
+!/src/main/resources/templates/fragments/test.html

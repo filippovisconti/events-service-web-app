@@ -1,5 +1,6 @@
 package it.uniroma3.siw.siweventsservice.services;
 
+import it.uniroma3.siw.siweventsservice.models.Event;
 import it.uniroma3.siw.siweventsservice.models.Organizer;
 import it.uniroma3.siw.siweventsservice.repositories.OrganizerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,11 @@ public class OrganizerService {
 		List<Organizer> l = new ArrayList<>();
 		for (Organizer i : organizerRepository.findAll()) l.add(i);
 		return l;
+	}
+
+	public Organizer findById (Long id) {
+		var p = organizerRepository.findById(id);
+		if (p.isPresent()) return p.get();
+		return null;
 	}
 }

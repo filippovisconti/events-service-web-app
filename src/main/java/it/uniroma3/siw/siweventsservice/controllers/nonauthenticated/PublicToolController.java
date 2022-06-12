@@ -23,8 +23,7 @@ public class PublicToolController {
 	public String getAllTools(Model model) {
 		List<Tool> tools = toolService.findAll();
 		model.addAttribute("tools", tools);
-		String nextPage = "tools.html";
-		return nextPage;
+		return "tools/tools";
 	}
 
 }

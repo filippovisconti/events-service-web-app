@@ -22,7 +22,6 @@ public class UserToolController {
 	@GetMapping("/tool/{id}")
 	public String getTool(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("tool", this.toolService.findById(id));
-		String nextPage = "tool.html";
-		return nextPage;
+		return "tools/tool";
 	}
 }

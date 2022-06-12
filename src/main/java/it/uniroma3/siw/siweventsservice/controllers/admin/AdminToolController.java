@@ -21,40 +21,37 @@ public class AdminToolController {
 	@Autowired
 	private ToolValidator toolValidator;
 
-
-	// ADMIN ONLY
 	@GetMapping("/toolForm")
-	public String getToolForm(Model model) {
+	public String getToolForm (Model model) {
 		model.addAttribute("tool", new Tool());
 		return "tools/toolForm.html";
 	}
 
 	@PostMapping("/tool")
 	public String newTool (@Valid @ModelAttribute("tool") Tool tool, BindingResult bindingResult, Model model) {
-	this.toolValidator.validate(tool,bindingResult);
+		this.toolValidator.validate(tool, bindingResult);
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.toolService.save(tool); // salvo un oggetto Tool
 			model.addAttribute("tool", this.toolService.findById(tool.getId()));
-			return "tools/tool.html";	  // presenta un pagina con la tool appena salvata
+			return "tools/tool.html";      // presenta un pagina con la tool appena salvata
 		} else
 			return "tools/toolForm.html"; // ci sono errori, torna alla form iniziale
 
 	}
+
 	@GetMapping("/editToolForm/{id}")
-	public String getBuffetForm(@PathVariable Long id, Model model) {
+	public String getBuffetForm (@PathVariable Long id, Model model) {
 		model.addAttribute("tool", toolService.findById(id));
 		return "tools/editToolForm.html";
 	}
 
 	@Transactional
 	@PostMapping("/edit/tool/{id}")
-	public String editBuffet(@PathVariable Long id, @Valid @ModelAttribute("tool") Tool tool, BindingResult bindingResults, Model model) {
+	public String editBuffet (@PathVariable Long id, @Valid @ModelAttribute("tool") Tool tool, BindingResult bindingResults, Model model) {
 		Tool oldTool = toolService.findById(id);
-		if (! oldTool.equals(tool))
+		if (!oldTool.equals(tool))
 			this.toolValidator.validate(tool, bindingResults);
-
-
-		if(!bindingResults.hasErrors()) {
+		if (!bindingResults.hasErrors()) {
 			oldTool.setId(tool.getId());
 			oldTool.setName(tool.getName());
 			oldTool.setDescription(tool.getDescription());
@@ -68,20 +65,19 @@ public class AdminToolController {
 	}
 
 	@GetMapping("/deleteTool/{id}")
-	public String toDeleteTool(@PathVariable("id") Long id, Model model) {
+	public String toDeleteTool (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("tool", this.toolService.findById(id));
 		return "tools/toolConfirmDelete.html";
 	}
 
 	@PostMapping("/deleteTool/{id}")
-	public String deleteTool(@PathVariable("id") Long id, Model model) {
-		String nextPage = "tools/tools.html";
+	public String deleteTool (@PathVariable("id") Long id, Model model) {
 		try {
 			this.toolService.deleteToolById(id);
-		} catch (Exception e){
-			nextPage = "error.html";
+			return "tools/tools.html";
+		} catch (Exception e) {
+			return "error.html";
 		}
-		return nextPage;
 	}
 
 }

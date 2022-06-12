@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/8eb840c3/entityManagerFactory/siw-events-service/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="-95.0" y="442.0">AbstractPersistable#jar:///Users/filippovisconti/.m2/repository/org/springframework/data/spring-data-jpa/2.6.4/spring-data-jpa-2.6.4.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class</node>
+    <node x="-95.0" y="278.0">Credentials#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/auth/models/Credentials.java</node>
+    <node x="-95.0" y="109.0">User#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/auth/models/User.java</node>
+    <node x="250.0" y="109.0">Activity#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Activity.java</node>
+    <node x="80.0" y="109.0">Organizer#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Organizer.java</node>
+    <node x="-95.0" y="545.0">AbstractAuditable#jar:///Users/filippovisconti/.m2/repository/org/springframework/data/spring-data-jpa/2.6.4/spring-data-jpa-2.6.4.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class</node>
+    <node x="75.0" y="278.0">Event#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Event.java</node>
+    <node x="250.0" y="-60.0">Tool#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Tool.java</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Event#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Event.java" target="Organizer#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Organizer.java" relationship="RELATION">
+      <point x="0.0" y="-59.5" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="Credentials#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/auth/models/Credentials.java" target="User#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/auth/models/User.java" relationship="RELATION">
+      <point x="0.0" y="-59.5" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="Activity#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Activity.java" target="Tool#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Tool.java" relationship="RELATION">
+      <point x="0.0" y="-59.5" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="Event#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Event.java" target="User#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/auth/models/User.java" relationship="RELATION">
+      <point x="0.0" y="-59.5" />
+      <point x="155.0" y="248.0" />
+      <point x="-20.0" y="248.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="AbstractAuditable#jar:///Users/filippovisconti/.m2/repository/org/springframework/data/spring-data-jpa/2.6.4/spring-data-jpa-2.6.4.jar!/org/springframework/data/jpa/domain/AbstractAuditable.class" target="AbstractPersistable#jar:///Users/filippovisconti/.m2/repository/org/springframework/data/spring-data-jpa/2.6.4/spring-data-jpa-2.6.4.jar!/org/springframework/data/jpa/domain/AbstractPersistable.class" relationship="INHERITANCE">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="Event#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Event.java" target="Activity#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Activity.java" relationship="RELATION">
+      <point x="0.0" y="-59.5" />
+      <point x="155.0" y="258.0" />
+      <point x="330.0" y="258.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="157.5" y="280.0" />
+  <SelectedNodes>
+    <node>Organizer#file:///Users/filippovisconti/Projects/siw-events-service/src/main/java/it/uniroma3/siw/siweventsservice/models/Organizer.java</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+

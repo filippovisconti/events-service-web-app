@@ -2,6 +2,7 @@ package it.uniroma3.siw.siweventsservice.services;
 
 
 import it.uniroma3.siw.siweventsservice.models.Activity;
+import it.uniroma3.siw.siweventsservice.models.Tool;
 import it.uniroma3.siw.siweventsservice.repositories.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,11 @@ public class ActivityService {
 		List<Activity> l = new ArrayList<>();
 		for (Activity i : activityRepository.findAll()) l.add(i);
 		return l;
+	}
+
+	public Activity findById (Long id) {
+		var p = activityRepository.findById(id);
+		if (p.isPresent()) return p.get();
+		return null;
 	}
 }
