@@ -39,7 +39,7 @@ public class AdminToolController {
 
 	}
 
-	@GetMapping("/editToolForm/{id}")
+	@GetMapping("/edit/tool/{id}")
 	public String getBuffetForm (@PathVariable Long id, Model model) {
 		model.addAttribute("tool", toolService.findById(id));
 		return "tools/editToolForm.html";
@@ -64,13 +64,13 @@ public class AdminToolController {
 		}
 	}
 
-	@GetMapping("/deleteTool/{id}")
+	@GetMapping("/delete/tool/{id}")
 	public String toDeleteTool (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("tool", this.toolService.findById(id));
 		return "tools/toolConfirmDelete.html";
 	}
 
-	@PostMapping("/deleteTool/{id}")
+	@PostMapping("/delete/tool/{id}")
 	public String deleteTool (@PathVariable("id") Long id, Model model) {
 		try {
 			this.toolService.deleteToolById(id);
