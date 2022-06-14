@@ -26,8 +26,8 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<!--<a class="nav-link active" href="#">Home</a>-->
 					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasRole('ROLE_USER')"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')"> Home </a>
+					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasRole('DEFAULT')"> Home </a>
+					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')"> Home </a>
 
 					<a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
 					<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
@@ -48,7 +48,8 @@
 
 		<footer class="mastfoot mt-auto" th:fragment="footer">
 			<div class="inner">
-				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+				<p>&copy;2022 <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo
+						Visconti</a>, Allegra Strippoli,
 					Lucrezia Sorrentino</p>
 			</div>
 		</footer>
