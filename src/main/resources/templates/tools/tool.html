@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
+
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Success</title>
+	<title>Tool details</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
@@ -26,7 +27,40 @@
 			</div>
 		</header>
 
-		<p class="fw-bolder text-success bg-light"> Everything went smoothly</p>
+		<!--<div class="row my-4" th:unless="${tool}">
+			<h4> This tool does not exist.</h4>
+		</div>-->
+
+		<div class="row my-4" th:if="${tool}">
+			<div class="col">
+				<h3> Details</h3>
+			</div>
+		</div>
+
+
+		<div class="row my-2" th:if="${tool}">
+
+			<div class="col-12 col-lg-8 align-self-center">
+				<div class="row my-3">
+					<div class="col">
+						<h2 th:text="${tool.name}">Whiteboard</h2>
+
+					</div>
+				</div>
+				<div class="row my-3">
+					<div class="col-10">
+						<p th:text="${tool.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+					</div>
+					<div class="col-2">
+						<p th:text="'$' + ${tool.cost}"> $99.00 </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4">
+				<img class="img-fluid rounded-3" th:src="@{/images/whiteboard.jpg}"
+					src="../../static/images/whiteboard.jpg" alt="tool picture">
+			</div>
+		</div>
 
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
 			<div class="inner">

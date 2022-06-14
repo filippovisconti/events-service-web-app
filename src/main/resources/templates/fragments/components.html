@@ -24,9 +24,15 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cover</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link active" href="#">Home</a>
-					<a class="nav-link" href="#">Features</a>
-					<a class="nav-link" href="#">Contact</a>
+					<!--<a class="nav-link active" href="#">Home</a>-->
+					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
+					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasRole('ROLE_USER')"> Home </a>
+					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasRole('ROLE_ADMIN')"> Home </a>
+
+					<a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
+					<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
+					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()"> Login </a>
+					<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
 				</nav>
 			</div>
 		</header>

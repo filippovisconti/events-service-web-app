@@ -5,7 +5,7 @@
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
 	<title>BaseTitle</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
-		  rel="stylesheet">
+		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
@@ -13,21 +13,16 @@
 
 	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
-		<header class="masthead mb-auto">
+		<header class="masthead mb-auto" th:replace="fragments/components :: header">
 			<div class="inner">
 				<h3 class="masthead-brand">EventManagement </h3>
 
 				<nav class="nav nav-masthead justify-content-center">
 					<!--<a class="nav-link active" href="#">Home</a>-->
 					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
-					<a class="nav-link" href="#" th:href="@{/public}" sec:authorize="isFullyAuthenticated()">Home</a>
-					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
-					<a class="nav-link" href="#" th:href="@{/protected}"
-						sec:authorize="isFullyAuthenticated()">Logout</a>
 					<a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
 					<a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
 					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
-					<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
 				</nav>
 			</div>
 		</header>

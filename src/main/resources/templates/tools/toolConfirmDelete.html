@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Success</title>
+	<title>Delete Tool</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
@@ -26,7 +26,20 @@
 			</div>
 		</header>
 
-		<p class="fw-bolder text-success bg-light"> Everything went smoothly</p>
+		<figure class="text-center">
+			<h4>Delete a tool</h4>
+		</figure>
+
+		<!--/*@thymesVar id="buffet" type="it.uniroma3.siw.siwcateringservice.model.Buffet"*/-->
+		<div class="container">
+			<p th:text="'You are about to remove: ' + ${tool.name}">You are about to remove:
+				Whiteboard </p>
+			<form method="POST" th:action="@{'/admin/delete/tool/' + '/' + ${tool.id}}" th:object="${tool}">
+				<button class="btn btn-danger" type="submit">Confirm</button>
+				<a class="btn btn-secondary" href="#" th:href="@{'/tools'}" th:text="Cancel">Cancel</a>
+			</form>
+
+		</div>
 
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
 			<div class="inner">
@@ -42,7 +55,6 @@
 			</div>
 		</footer>
 
-	</div>
 </body>
 
 </html>

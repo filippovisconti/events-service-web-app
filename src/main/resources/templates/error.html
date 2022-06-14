@@ -1,26 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-	xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
 	<title>Error</title>
-	<link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
-	<link th:href="@{/css/confirmPage.css}" rel="stylesheet" href="../../static/css/confirmPage.css">
-
+	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
+		rel="stylesheet">
+	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
-<header>
-	<h1 class="header-title">Damn it :(</h1>
-</header>
 
-<body>
-	<div class="parentCol, error-text">Something bad happened. Look at the stack trace on the server.</div>
+<body class="text-center bg-home">
 
-</body>
-<footer th:replace="fragments/components :: footer">
-	<div id="footer-links">
-		<span><a href="/index.html">HomeTEST</a> - </span>
-		<a href="/index.html" th:href="@{/logout}">Logout </a>
+	<div class="container d-flex h-100 p-3 mx-auto flex-column">
+
+		<header class="masthead mb-auto" th:replace="fragments/components :: header">
+			<div class="inner">
+				<h3 class="masthead-brand">EventManagement </h3>
+
+				<nav class="nav nav-masthead justify-content-center">
+					<!--<a class="nav-link active" href="#">Home</a>-->
+					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
+					<a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
+					<a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
+					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+				</nav>
+			</div>
+		</header>
+
+		<p class="fw-bolder text-danger bg-light"> Something bad happened. Look at the stack trace on the server
+			console.</p>
+		<table>
+			<tr>
+				<td>Date</td>
+				<td th:text="${timestamp}" />
+			</tr>
+			<tr>
+				<td>Path</td>
+				<td th:text="${path}" />
+			</tr>
+			<tr>
+				<td>Error</td>
+				<td th:text="${error}" />
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td th:text="${status}" />
+			</tr>
+			<tr>
+				<td>Message</td>
+				<td th:text="${message}" />
+			</tr>
+			<tr>
+				<td>Exception</td>
+				<td th:text="${exception}" />
+			</tr>
+			<tr>
+				<td>Trace</td>
+				<td>
+					<pre th:text="${trace}" />
+				</td>
+			</tr>
+		</table>
+
+		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+			<div class="inner">
+				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+					Lucrezia Sorrentino</p>
+
+			</div>
+			<div id="inner">
+				<span>
+					<a href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
+					- <a href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+				</span>
+			</div>
+		</footer>
+
 	</div>
-</footer>
+</body>
 
 </html>
