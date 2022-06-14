@@ -74,6 +74,7 @@ public class AdminToolController {
 	public String deleteTool (@PathVariable("id") Long id, Model model) {
 		try {
 			this.toolService.deleteToolById(id);
+			model.addAttribute("tools", this.toolService.findAll());
 			return "tools/tools.html";
 		} catch (Exception e) {
 			return "error.html";

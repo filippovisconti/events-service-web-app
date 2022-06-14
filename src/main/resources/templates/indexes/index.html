@@ -5,43 +5,66 @@
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>BaseTitle</title>
     <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
-          rel="stylesheet">
+        rel="stylesheet">
     <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
-<header>
-    <h1 class="header-title">Catering Service</h1>
-</header>
+<body class="text-center bg-home">
 
-<body>
+    <div class="container d-flex h-100 p-3 mx-auto flex-column">
 
-    <div class="center">
+        <header class="masthead mb-auto" th:replace="fragments/components :: header">
+            <div class="inner">
+                <h3 class="masthead-brand">EventManagement </h3>
 
-        <h2 class="welcome-text">Welcome to the public interface of the Event Service.</h2>
+                <nav class="nav nav-masthead justify-content-center">
+                    <!--<a class="nav-link active" href="#">Home</a>-->
+                    <a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
+                    <a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
+                    <a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
+                    <a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+                </nav>
+            </div>
+        </header>
 
-        <table class="greyGridTable">
-            <tbody>
-                <tr>
-                    <td><a class="button button1" href="/login.html" th:href="@{/admin}">Administration</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a class="button button2" href="/public" th:href="@{/public}">Explore </a></td>
-                </tr>
-                <tr>
-                    <td><a class="button button3" href="/register" th:href="@{/register}">Register</a></td>
-                </tr>
 
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col"> Col 1 </div>
+            <div class="col"> Col 2 </div>
+            <div class="col"> Col 3 </div>
+            <div class="col"> Col 4 </div>
+        </div>
+        <div class="row">
+            <div class="col"> Col 1 </div>
+            <div class="col"> Col 2 </div>
+            <div class="col"> Col 3 </div>
+            <div class="col"> Col 4 </div>
+        </div>
+
+        <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+            <div class="inner">
+                <p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+                    Lucrezia Sorrentino</p>
+
+            </div>
+            <div id="inner">
+                <span>
+                    <a href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
+                    - <a href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+                </span>
+            </div>
+        </footer>
 
     </div>
 </body>
-<footer th:replace="fragments/components :: footer">
-    <div id="footer-links">
-        <span><a href="/index.html">HomeTEST</a> - </span>
-        <a href="/index.html" th:href="@{/logout}">Logout </a>
-    </div>
-</footer>
+
+
 
 </html>
+
+<a class="button button1" href="/login.html" th:href="@{/admin}">Administration</a>
+
+<a class="button button2" href="/public" th:href="@{/public}">Explore </a>
+
+
+<a class="button button3" href="/register" th:href="@{/register}">Register</a>
