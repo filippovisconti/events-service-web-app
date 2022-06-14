@@ -8,9 +8,9 @@
 	<title th:replace="${title}">EventManagement</title>
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-	<link th:href="@{/static/bootstrap/css/bootstrap.css}" href="../../static/bootstrap/css/bootstrap.css"
+	<!--<link th:href="@{../static/bootstrap/css/bootstrap.css}" href="../../static/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
-	<link th:href="@{/static/custom/base.css}" href="../../static/custom/base.css" rel="stylesheet">
+	<link th:href="@{../static/custom/base.css}" href="../../static/custom/base.css" rel="stylesheet">-->
 
 	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
 
@@ -20,7 +20,7 @@
 
 <body class="text-center">
 	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-		<header class="masthead mb-auto" th:fragment="footer">
+		<header class="masthead mb-auto" th:fragment="header">
 			<div class="inner">
 				<h3 class="masthead-brand">Cover</h3>
 				<nav class="nav nav-masthead justify-content-center">
@@ -42,23 +42,11 @@
 
 		<footer class="mastfoot mt-auto" th:fragment="footer">
 			<div class="inner">
-				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a></p>
-
-			</div>
-			<div id="inner">
-				<span>
-					<a href="/index.html" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
-					<a href="/index.html" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a> -
-					<a href="/index.html" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
-					<a href="/index.html" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
-				</span>
+				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+					Lucrezia Sorrentino</p>
 			</div>
 		</footer>
 	</div>
-
-
-	<!--Waves end-->
-
 </body>
 
 

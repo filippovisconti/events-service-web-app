@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User{// extends DefaultOAuth2User {
+public class User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

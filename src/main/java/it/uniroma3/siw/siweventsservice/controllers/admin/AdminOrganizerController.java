@@ -40,14 +40,14 @@ public class AdminOrganizerController {
 	}
 
 	@GetMapping("/edit/organizer/{id}")
-	public String getBuffetForm (@PathVariable Long id, Model model) {
+	public String getOrganizerForm (@PathVariable Long id, Model model) {
 		model.addAttribute("organizer", organizerService.findById(id));
 		return "organizers/editOrganizerForm.html";
 	}
 
 	@Transactional
 	@PostMapping("/edit/organizer/{id}")
-	public String editBuffet (@PathVariable Long id, @Valid @ModelAttribute("organizer") Organizer organizer, BindingResult bindingResults, Model model) {
+	public String editOrganizer (@PathVariable Long id, @Valid @ModelAttribute("organizer") Organizer organizer, BindingResult bindingResults, Model model) {
 		Organizer oldOrganizer = organizerService.findById(id);
 		if (!oldOrganizer.equals(organizer))
 			this.organizerValidator.validate(organizer, bindingResults);

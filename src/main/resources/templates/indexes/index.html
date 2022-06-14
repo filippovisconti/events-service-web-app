@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-    xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-    <title>Public Home Page - Catering Service </title>
-    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
-    <link th:href="@{/css/indexPage.css}" rel="stylesheet" href="../../static/css/indexPage.css">
-
+    <title>BaseTitle</title>
+    <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
+          rel="stylesheet">
+    <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
+
 <header>
     <h1 class="header-title">Catering Service</h1>
 </header>
@@ -16,7 +17,7 @@
 
     <div class="center">
 
-        <h2 class="welcome-text">Welcome to the public interface of the Catering Service.</h2>
+        <h2 class="welcome-text">Welcome to the public interface of the Event Service.</h2>
 
         <table class="greyGridTable">
             <tbody>
@@ -25,8 +26,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><a class="button button2" href="/public" th:href="@{/public}">Explore buffets and
-                            details</a></td>
+                    <td><a class="button button2" href="/public" th:href="@{/public}">Explore </a></td>
                 </tr>
                 <tr>
                     <td><a class="button button3" href="/register" th:href="@{/register}">Register</a></td>

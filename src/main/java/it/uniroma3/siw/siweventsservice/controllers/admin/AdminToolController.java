@@ -40,14 +40,14 @@ public class AdminToolController {
 	}
 
 	@GetMapping("/edit/tool/{id}")
-	public String getBuffetForm (@PathVariable Long id, Model model) {
+	public String getToolForm (@PathVariable Long id, Model model) {
 		model.addAttribute("tool", toolService.findById(id));
 		return "tools/editToolForm.html";
 	}
 
 	@Transactional
 	@PostMapping("/edit/tool/{id}")
-	public String editBuffet (@PathVariable Long id, @Valid @ModelAttribute("tool") Tool tool, BindingResult bindingResults, Model model) {
+	public String editTool (@PathVariable Long id, @Valid @ModelAttribute("tool") Tool tool, BindingResult bindingResults, Model model) {
 		Tool oldTool = toolService.findById(id);
 		if (!oldTool.equals(tool))
 			this.toolValidator.validate(tool, bindingResults);

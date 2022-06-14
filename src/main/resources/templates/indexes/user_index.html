@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-    xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-    <title>Public Home Page - Catering Service </title>
-    <link th:href="@{/css/basestyle.css}" rel="stylesheet" href="../../static/css/basestyle.css">
-    <link th:href="@{/css/indexPage.css}" rel="stylesheet" href="../../static/css/indexPage.css">
-    <link th:href="@{/css/cards.css}" rel="stylesheet" href="../../static/css/cards.css">
-
+    <title>BaseTitle</title>
+    <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
+          rel="stylesheet">
+    <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
-<header class="header-title">
     <div>
         <h1>Catering Service</h1>
     </div>
@@ -17,90 +15,11 @@
 
 <body>
 
-    <h2 class="welcome-text">Welcome to the public interface of the Catering Service.</h2>
+    <h2 class="welcome-text">Welcome to the public interface of the Event Service.</h2>
     <div class="parentCol">
 
         <h3 class="center-text">Explore what we have to offer</h3>
 
-        <!-- <table class="greyGridTable">
-        <tbody>
-            <tr>
-                <td>Ingredients</td>
-                <td> <a class="button button1" href="/ingredients" th:href="@{/ingredients}"> show all </a>
-                </td>
-                <td> <a class="button button2" href="/ingredientsForm" th:href="@{/ingredientForm}"> add </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Dishes</td>
-                <td><a class="button button1" href="/dishes" th:href="@{/dishes}"> show all </a></td>
-                <td><a class="button button2" href="/dishForm" th:href="@{/dishForm}"> add </a></td>
-            </tr>
-            <tr>
-                <td>Chefs</td>
-                <td><a class="button button1" href="/chefs" th:href="@{/chefs}"> show all </a></td>
-                <td><a class="button button2" href="/chefForm" th:href="@{/chefForm}"> add </a></td>
-            </tr>
-            <tr>
-                <td>Buffets</td>
-                <td><a class="button button1" href="/buffets" th:href="@{/buffets}"> show all </a></td>
-                <td><a class="button button2" href="/buffetForm" th:href="@{/buffetForm}"> add </a></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-              <br>
-            -->
-
-        <div class="parent card_container">
-            <article class="card card-chef">
-                <div class="card__content">
-                    <h3 class="card__title"><a href="/chefs" th:href="@{/chefs}"> Chefs </a></h3>
-                    <p class="card__description">Our exceptional chefs, who won't let your guests starve.</p>
-                </div>
-            </article>
-
-            <article class="card card-ingredient">
-                <div class="card__content">
-                    <h3 class="card__title"><a href="/ingredients" th:href="@{/ingredients}"> Ingredients </a></h3>
-
-
-                    <p class="card__description">Take a look at our choice of fresh and healthy ingredients.</p>
-                </div>
-            </article>
-
-
-
-            <article class="card card-dish">
-                <div class="card__content">
-                    <h3 class="card__title"><a href="/dishes" th:href="@{/dishes}"> Dishes </a></h3>
-                    <p class="card__description">The first taste is always with the eyes, or so they say...</p>
-                </div>
-            </article>
-
-
-
-
-            <article class="card card-buffet">
-                <div class="card__content">
-                    <h3 class="card__title"><a href="/buffets" th:href="@{/buffets}"> Buffets </a></h3>
-                    <p class="card__description">If you're too lazy to pick your own dishes for your party, here are
-                        some
-                        proposals from our chefs</p>
-                </div>
-            </article>
-        </div>
-
-        <div class="childCol">
-            <p> Rooted in cultivated experiences, Siw Catering & Events works with a diverse client base. We
-                provide
-                off-premise catering for corporate, social, and institutional clients. We specialize in corporate dining
-                programs, weddings, and events at a variety of select venues in and around Rome, Italy. Established in
-                2022,
-                we take pride in our reputation of honesty and innovation.</p>
-            Paragraph inspired by: <a href="https://deborahmillercatering.com/">Deborah Miller Catering & Events</a>
-        </div>
 
     </div>
 </body>

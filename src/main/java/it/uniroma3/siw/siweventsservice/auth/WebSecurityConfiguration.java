@@ -56,9 +56,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication()
 				.dataSource(this.datasource) //use the autowired datasource to access the saved credentials
 				//retrieve username and role
-				.authoritiesByUsernameQuery("SELECT username, role FROM credentials_table WHERE username=?")
+				.authoritiesByUsernameQuery("SELECT username, role FROM event_credentials_table WHERE username=?")
 				//retrieve username, password and a bool specifying whether the user is enabled (always enabled for us)
-				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials_table WHERE username=?");
+				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM event_credentials_table WHERE username=?");
 	}
 
 	/**
