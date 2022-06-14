@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
+    <title>BaseTitle</title>
+    <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
+        rel="stylesheet">
+    <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
+</head>
+
+<body class="text-center bg-home">
+
+    <div class="container d-flex h-100 p-3 mx-auto flex-column">
+
+        <header class="masthead mb-auto" th:replace="fragments/components :: header">
+            <div class="inner">
+                <h3 class="masthead-brand">EventManagement </h3>
+
+                <nav class="nav nav-masthead justify-content-center">
+                    <!--<a class="nav-link active" href="#">Home</a>-->
+                    <a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
+                    <a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
+                    <a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
+                    <a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()"> Login </a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="row my-5">
+            <h1>
+                Explore 4 upcoming events
+            </h1>
+        </div>
+        <div class="row row flex-row flex-nowrap">
+            <div class="col-3" th:each="event : ${events}">
+                <div class="card text-dark bg-light mb-3">
+                    <div class="card-header mt-2">
+                        <h6 th:text="${event.date}">05/06/2000</h6>
+                    </div>
+                    <div class="card-body">
+                        <a class="text-dark" href="#" th:href="@{'/protected/event/'+ ${event.id}}">
+                            <h5 class="card-title" th:text="${event.name}">Event title</h5>
+                        </a>
+
+                        <p class="card-text" th:text="${event.description}">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur itaque
+                            molestiae provident tempore? </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+            <div class="inner">
+                <p>&copy;2022 <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo
+                        Visconti</a>, Allegra Strippoli,
+                    Lucrezia Sorrentino</p>
+
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
