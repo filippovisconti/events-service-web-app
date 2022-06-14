@@ -1,6 +1,7 @@
 package it.uniroma3.siw.siweventsservice.controllers.admin;
 
 import it.uniroma3.siw.siweventsservice.models.Organizer;
+import it.uniroma3.siw.siweventsservice.services.EventService;
 import it.uniroma3.siw.siweventsservice.services.OrganizerService;
 import it.uniroma3.siw.siweventsservice.validators.OrganizerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,14 @@ public class AdminOrganizerController {
 	private OrganizerService organizerService;
 
 	@Autowired
+	private EventService eventService;
+
+	@Autowired
 	private OrganizerValidator organizerValidator;
 
 	@GetMapping("/organizerForm")
 	public String getOrganizerForm (Model model) {
+		model.addAttribute("events", eventService.findAll());
 		model.addAttribute("organizer", new Organizer());
 		return "organizers/organizerForm.html";
 	}
