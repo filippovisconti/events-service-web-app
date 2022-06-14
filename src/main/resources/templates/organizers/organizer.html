@@ -3,7 +3,7 @@
 
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Tool details</title>
+	<title>Organizer details</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
@@ -27,39 +27,43 @@
 			</div>
 		</header>
 
-		<div class="row my-4 text-danger" th:unless="${tool}">
-			<h4> This tool does not exist.</h4>
+		<div class="row my-4 text-danger" th:unless="${organizer}">
+			<h4> This organizer does not exist.</h4>
 		</div>
 
-		<div class="row my-4" th:if="${tool}">
+		<div class="row my-4" th:if="${organizer}">
 			<div class="col">
 				<h3> Details</h3>
 			</div>
 		</div>
 
 
-		<div class="row my-2" th:if="${tool}">
+		<div class="row my-2 justify-content-center" th:if="${organizer}">
 
-			<div class="col-12 col-lg-8 align-self-center">
+			<div class="col-12 col-lg-6 align-self-center">
 				<div class="row my-3">
 					<div class="col">
-						<h2 th:text="${tool.name}">Whiteboard</h2>
+						<h2 class="" th:text="|${organizer.firstName} ${organizer.lastName}|">John Doe</h2>
 
 					</div>
 				</div>
 				<div class="row my-3">
-					<div class="col-10">
-						<p th:text="${tool.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+					<div class="col">
+						<p th:text="${organizer.country}"> United States </p>
 					</div>
-					<div class="col-2">
-						<p th:text="'$' + ${tool.cost}"> $99.00 </p>
+
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="row my-3 align-self-center justify-content-center">
+					<div class="col-8">
+						<img class="img-fluid rounded-3" th:src="@{/images/whiteboard.jpg}"
+							src="../../static/images/whiteboard.jpg" alt="organizer picture">
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-lg-4">
-				<img class="img-fluid rounded-3" th:src="@{/images/whiteboard.jpg}"
-					src="../../static/images/whiteboard.jpg" alt="tool picture">
-			</div>
+
+			<!-- TODO Qua ci va l'elenco degli eventi di cui è responsabile-->
 		</div>
 
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
@@ -69,7 +73,6 @@
 
 			</div>
 		</footer>
-
 	</div>
 </body>
 

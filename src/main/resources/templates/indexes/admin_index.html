@@ -28,19 +28,29 @@
 		</header>
 
 
-		<div class="row">
+		<div class="row my-5">
 			<div class="col">
 				<h1>
-					Welcome Admin
+					Welcome Admin (
+					<!--TODO -->can we put the name? )
 				</h1>
-				<div class="btn-group btn-group-lg my-3">
-					<a class="btn btn-lg btn-success" href="#" th:href="@{/}">Explore </a>
-					<a class="btn btn-lg btn-secondary" href="#" th:href="@{/register}">Sign up</a>
-					<a class="btn btn-lg btn-danger" href="#" th:href="@{/login}">Login</a>
-				</div>
+
 			</div>
 		</div>
-
+		<div class="row my-5">
+			<div class="col-3">
+				<p>Numero eventi disponibili</p>
+			</div>
+			<div class="col-3">
+				<p>Numero attività disponibili</p>
+			</div>
+			<div class="col-3">
+				<p>Numero organizzatori disponibili</p>
+			</div>
+			<div class="col-3">
+				<p>Numero utenti registrati</p>
+			</div>
+		</div>
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
 			<div class="inner">
 				<p>&copy;2022 <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo
