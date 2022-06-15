@@ -40,32 +40,43 @@
 					</p>
 				</div>
 				<div class="mb-3">
-					<label for="toolname" class="form-label">Name</label>
-					<input type="text" class="form-control" id="toolname" aria-describedby="toolNameHelp"
-						th:field="*{name}" th:value="*{name}" />
-					<div id="toolNameHelp" class="form-text">e.g.: Whiteboard</div>
+					<label for="activityname" class="form-label">Name</label>
+					<input type="text" class="form-control" id="activityname" th:field="*{name}" th:value="*{name}"
+						placeholder="Meeting" required />
+
 				</div>
 
 				<div class="mb-3">
 					<div class="input-group">
 						<span class="input-group-text">Description</span>
-						<textarea class="form-control" aria-label="Description" aria-describedby="toolDescrHelp2"
-							th:field="*{description}" th:value="*{description}" /> Enter here your description
-						</textarea>
+						<textarea class="form-control" aria-label="Description" th:field="*{description}"
+							th:value="*{description}" placeholder="Entere here the description" required /></textarea>
 					</div>
-					<div id="toolDescrHelp2" class="form-text">e.g.: a 120x80cm Whiteboard</div>
+
 				</div>
 
 				<div class="mb-3">
-					<label for="toolCost" class="form-label">Cost</label>
+					<label for="activityCost" class="form-label">Duration</label>
 					<div class="input-group">
-						<span class="input-group-text">$</span>
-						<input type="text" class="form-control" id="toolCost"
-							aria-label="Amount (to the nearest dollar)" aria-describedby="toolCostHelp"
-							th:field="*{cost}" th:value="*{cost}" />
-						<span class="input-group-text">.00</span>
+						<input type="text" class="form-control" id="activityCost" aria-label="Hours"
+							th:field="*{duration}" th:value="*{duration}" placeholder="e.g.: 2,5" />
+						<span class="input-group-text">hours</span>
 					</div>
-					<div id="toolCostHelp" class="form-text">e.g.: 99.00</div>
+
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="row mt-3">
+							<legend>Select tools</legend>
+						</div>
+						<div class="row mb-5" th:each="tool: ${tools}">
+							<div class="col">
+								<input type="checkbox" id="tools" th:field="*{toolList}" name="tool"
+									th:value="${tool.id}">
+								<label for="tools" th:text="${tool.name}">Tool name</label>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Submit</button>
