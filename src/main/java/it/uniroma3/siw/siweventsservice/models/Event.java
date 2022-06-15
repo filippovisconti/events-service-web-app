@@ -41,7 +41,7 @@ public class Event {
 	@NotEmpty
 	private List<Activity> activityList;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "eventList")
 	private List<User> participants;
 
 	@Override
