@@ -181,7 +181,8 @@ body {
     }
 }
 
-.bg-home {
+.bg-home,
+.bg-event {
     /* The image used */
     background-image: url("../../images/conf_room.jpg");
 

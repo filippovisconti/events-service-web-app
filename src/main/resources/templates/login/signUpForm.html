@@ -5,101 +5,98 @@
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
 	<title>BaseTitle</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
-		  rel="stylesheet">
+		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
 <body class="text-center bg-home">
 
-<div class="container d-flex h-100 p-3 mx-auto flex-column">
+	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
-	<header class="masthead mb-auto">
-		<div class="inner">
-			<h3 class="masthead-brand">EventManagement </h3>
+		<header class="masthead mb-auto">
+			<div class="inner">
+				<h3 class="masthead-brand">EventManagement </h3>
 
-			<nav class="nav nav-masthead justify-content-center">
-				<!--<a class="nav-link active" href="#">Home</a>-->
-				<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
-				<a class="nav-link" href="#" th:href="@{/public}" sec:authorize="isFullyAuthenticated()">Home</a>
-				<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
-				<a class="nav-link" href="#" th:href="@{/protected}"
-				   sec:authorize="isFullyAuthenticated()">Logout</a>
-				<a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
-				<a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
-				<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
-				<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
-			</nav>
-		</div>
-	</header>
+				<nav class="nav nav-masthead justify-content-center">
+					<!--<a class="nav-link active" href="#">Home</a>-->
+					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
+					<a class="nav-link" href="#" th:href="@{/public}" sec:authorize="isFullyAuthenticated()">Home</a>
+					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
+					<a class="nav-link" href="#" th:href="@{/protected}"
+						sec:authorize="isFullyAuthenticated()">Logout</a>
+					<a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
+					<a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
+					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+					<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
+				</nav>
+			</div>
+		</header>
 
-	<!--/*@thymesVar id="credentials" type="it.uniroma3.siw.siwcateringservice.auth.models.Credentials"*/-->
-	<form method="POST" th:action="@{/register}" th:object="${credentials}" class="row g-3">
-		<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
-			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">this will contain
-				errors
-			</p>
-		</div>
+		<!--/*@thymesVar id="credentials" type="it.uniroma3.siw.siwcateringservice.auth.models.Credentials"*/-->
+		<form method="POST" th:action="@{/register}" th:object="${credentials}" class="row g-3">
+			<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain
+					errors
+				</p>
+			</div>
 
-		<div class="col-12">
-			<label for="inputUsername" class="form-label">Username</label>
-			<input type="text" class="form-control" id="inputUsername" placeholder="paperino00"
-				   th:field="*{username}">
-			<span class="error-text" th:errors="*{username}"
-				  th:if="${#fields.hasErrors('username')}">
-									error name
-								</span>
-		</div>
+			<div class="col-12">
+				<label for="inputUsername" class="form-label">Username</label>
+				<input type="text" class="form-control" id="inputUsername" placeholder="paperino"
+					th:field="*{username}">
+				<span class="error-text" th:errors="*{username}" th:if="${#fields.hasErrors('username')}">
+					error name
+				</span>
+			</div>
 
-		<div class="col-md-6">
-			<label for="inputEmail4" class="form-label">Email</label>
-			<input type="email" class="form-control" id="inputEmail4" th:field="*{user.email}">
-		</div>
-		<div class="col-md-6">
-			<label for="inputPassword4" class="form-label">Password</label>
-			<input type="password" class="form-control" id="inputPassword4" th:field="*{password}">
-			<span class="error-text" th:errors="*{password}" th:if="${#fields.hasErrors('password')}">
-								error origin
-							</span>
-		</div>
-		<div class="col-md-6">
-			<label for="inputFname" class="form-label">First Name</label>
-			<input type="text" class="form-control" id="inputFname" th:field="*{user.firstName}">
-		</div>
-		<div class="col-md-6">
-			<label for="inputLname" class="form-label">Last Name</label>
-			<input type="text" class="form-control" id="inputLname" th:field="*{user.lastName}">
-		</div>
-		<div class="col-12">
-			<label for="inputAddress" class="form-label">Role</label>
-			<input type="text" class="form-control" id="inputAddress" placeholder="DEFAULT or ADMIN"
-				   th:field="*{role}">
-		</div>
+			<div class="col-md-6">
+				<label for="inputEmail4" class="form-label">Email</label>
+				<input type="email" class="form-control" id="inputEmail4" th:field="*{user.email}">
+			</div>
+			<div class="col-md-6">
+				<label for="inputPassword4" class="form-label">Password</label>
+				<input type="password" class="form-control" id="inputPassword4" th:field="*{password}">
+				<span class="error-text" th:errors="*{password}" th:if="${#fields.hasErrors('password')}">
+					error origin
+				</span>
+			</div>
+			<div class="col-md-6">
+				<label for="inputFname" class="form-label">First Name</label>
+				<input type="text" class="form-control" id="inputFname" th:field="*{user.firstName}" placeholder="John">
+			</div>
+			<div class="col-md-6">
+				<label for="inputLname" class="form-label">Last Name</label>
+				<input type="text" class="form-control" id="inputLname" th:field="*{user.lastName}" placeholder="Doe">
+			</div>
+			<div class="col-12">
+				<label for="inputAddress" class="form-label">Role</label>
+				<input type="text" class="form-control" id="inputAddress" placeholder="DEFAULT or ADMIN"
+					th:field="*{role}">
+			</div>
 
-		<div class="col-12">
-			<button type="submit" class="btn btn-primary">Sign in</button>
-		</div>
-	</form>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary">Sign in</button>
+			</div>
+		</form>
 
 
-	<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
-		<div class="inner">
-			<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
-				Lucrezia Sorrentino</p>
+		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+			<div class="inner">
+				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+					Lucrezia Sorrentino</p>
 
-		</div>
-		<div id="inner">
+			</div>
+			<div id="inner">
 				<span>
 					<a href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
 					- <a href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
 				</span>
-		</div>
-	</footer>
+			</div>
+		</footer>
 
-</div>
+	</div>
 </body>
 
 
 
 </html>
-
-

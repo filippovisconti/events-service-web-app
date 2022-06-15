@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
@@ -34,8 +34,11 @@
 					Welcome,
 				</h2>
 				<h1>
-					Name <div sec:authentication="name"></div>
+					<div sec:authentication="name"></div>
 				</h1>
+				<h4>
+					<div sec:authentication="principal.authorities"></div>
+				</h4>
 			</div>
 		</div>
 		<div class="row my-5">
@@ -48,7 +51,7 @@
 				</div>
 				<div class="row my-3">
 					<div class="col">
-						<a class="btn btn-warning" href="#" th:href="@{/public/events}">Edit users</a>
+						<a class="btn btn-warning" href="#" th:href="@{/public/events}">Edit events</a>
 					</div>
 				</div>
 			</div>
