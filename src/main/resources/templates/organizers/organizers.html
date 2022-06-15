@@ -9,7 +9,7 @@
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
-<body class="text-center bg-home">
+<body class="text-center bg-organizer">
 
 	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
@@ -37,7 +37,7 @@
 
 		</div>
 
-		<div class="row my-2" th:unless="${organizers.isEmpty()}">
+		<div class="row my-2 justify-content-center" th:unless="${organizers.isEmpty()}">
 
 			<div class="col-4">
 				<h5>Name</h5>
@@ -45,13 +45,13 @@
 			<div class="col-4">
 				<h5>Country</h5>
 			</div>
-			<div class="col-4">
+			<div class="col-4" sec:authorize="hasRole('ADMIN')">
 				<h5>Edit</h5>
 			</div>
 
 		</div>
 		<!--/*@thymesVar id="dishes" type="java.util.List<Organizer>"*/-->
-		<div class="row mb-2" th:each="organizer : ${organizers}">
+		<div class="row mb-2 justify-content-center" th:each="organizer : ${organizers}">
 			<div class="col-4"> <a href="#" th:href="@{'/organizer' + '/' + ${organizer.id}}"
 					th:text="|${organizer.firstName}: ${organizer.lastName}|"> John Doe </a> </div>
 
@@ -59,13 +59,19 @@
 				<p th:text="${organizer.description}"> United States </p>
 			</div>
 
-			<div class="col-4">
+			<div class="col-4" sec:authorize="hasRole('ADMIN')">
 				<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
 					<a class="btn btn-danger btn-sm" href="#"
 						th:href="@{'/admin/delete/organizer' + '/' + ${organizer.id}}">Remove</a>
 					<a class="btn btn-warning btn-sm" href="#"
 						th:href="@{'/admin/edit/organizer' + '/' + ${organizer.id}}">Edit</a>
 				</div>
+			</div>
+		</div>
+
+		<div class="row mt-5" sec:authorize="hasRole('ADMIN')">
+			<div class="col">
+				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/toolForm}">Add tool</a>
 			</div>
 		</div>
 
@@ -112,12 +118,6 @@
 				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
 					Lucrezia Sorrentino</p>
 
-			</div>
-			<div id="inner">
-				<span>
-					<a href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
-					- <a href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
-				</span>
 			</div>
 		</footer>
 

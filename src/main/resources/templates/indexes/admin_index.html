@@ -28,27 +28,68 @@
 		</header>
 
 
-		<div class="row my-5">
+		<div class="row mb-5">
 			<div class="col">
+				<h2>
+					Welcome,
+				</h2>
 				<h1>
-					Welcome Admin (
-					<!--TODO -->can we put the name? )
+					Name <div sec:authentication="name"></div>
 				</h1>
-
 			</div>
 		</div>
 		<div class="row my-5">
 			<div class="col-3">
-				<p>Numero eventi disponibili</p>
+				<div class="row">
+					<p>Numero eventi disponibili</p>
+				</div>
+				<div class="row my-3">
+					<h1 th:text="${numEvents}"> 10 </h1>
+				</div>
+				<div class="row my-3">
+					<div class="col">
+						<a class="btn btn-warning" href="#" th:href="@{/public/events}">Edit users</a>
+					</div>
+				</div>
 			</div>
 			<div class="col-3">
-				<p>Numero attività disponibili</p>
+				<div class="row">
+					<p>Numero attività disponibili</p>
+				</div>
+				<div class="row my-3">
+					<h1 th:text="${numActivities}"> 23 </h1>
+				</div>
+				<div class="row my-3">
+					<div class="col">
+						<a class="btn btn-warning" href="#" th:href="@{/public/activities}">Edit activities</a>
+					</div>
+				</div>
 			</div>
 			<div class="col-3">
-				<p>Numero organizzatori disponibili</p>
+				<div class="row">
+					<p>Numero organizzatori disponibili</p>
+				</div>
+				<div class="row my-3">
+					<h1 th:text="${numOrganizers}"> 6</h1>
+				</div>
+				<div class="row my-3">
+					<div class="col">
+						<a class="btn btn-warning" href="#" th:href="@{/public/organizers}">Edit organizers</a>
+					</div>
+				</div>
 			</div>
 			<div class="col-3">
-				<p>Numero utenti registrati</p>
+				<div class="row">
+					<p>Numero utenti registrati</p>
+				</div>
+				<div class="row my-3">
+					<h1 th:text="${numUsers}"> 87 </h1>
+				</div>
+				<div class="row my-3">
+					<div class="col">
+						<a class="btn btn-warning" href="#" th:href="@{/public/events}">Edit users</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">

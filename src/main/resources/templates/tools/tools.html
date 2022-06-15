@@ -9,7 +9,7 @@
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
-<body class="text-center bg-home">
+<body class="text-center bg-tool">
 
 	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
@@ -28,7 +28,7 @@
 		</header>
 
 
-		<div class="row my-4 text-danger" th:if="${tools.isEmpty()}">
+		<div class="row bg-dark my-4 text-danger" th:if="${tools.isEmpty()}">
 			<h4>No Tools Available</h4>
 		</div>
 
@@ -37,7 +37,7 @@
 
 		</div>
 
-		<div class="row my-2" th:unless="${tools.isEmpty()}">
+		<div class="row my-2 justify-content-center" th:unless="${tools.isEmpty()}">
 
 			<div class="col-3">
 				<h5>Name</h5>
@@ -48,12 +48,12 @@
 			<div class="col-2">
 				<h5>Cost</h5>
 			</div>
-			<div class="col-2">
+			<div class="col-2" sec:authorize="hasRole('ADMIN')">
 				<h5>Edit</h5>
 			</div>
 		</div>
 		<!--/*@thymesVar id="dishes" type="java.util.List<Tool>"*/-->
-		<div class="row mb-2" th:each="tool : ${tools}">
+		<div class="row mb-2 justify-content-center" th:each="tool : ${tools}">
 			<div class="col-3"> <a href="#" th:href="@{'/tool' + '/' + ${tool.id}}"
 					th:text="${tool.name}">Whiteboard</a> </div>
 
@@ -63,13 +63,19 @@
 			<div class="col-2">
 				<p th:text="'$' + ${tool.cost}"> $99.00 </p>
 			</div>
-			<div class="col-2">
+			<div class="col-2" sec:authorize="hasRole('ADMIN')">
 				<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
 					<a class="btn btn-danger btn-sm" href="#"
 						th:href="@{'/admin/delete/tool' + '/' + ${tool.id}}">Remove</a>
 					<a class="btn btn-warning btn-sm" href="#"
 						th:href="@{'/admin/edit/tool' + '/' + ${tool.id}}">Edit</a>
 				</div>
+			</div>
+		</div>
+
+		<div class="row mt-5" sec:authorize="hasRole('ADMIN')">
+			<div class="col">
+				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/organizerForm}">Add organizer</a>
 			</div>
 		</div>
 
@@ -115,13 +121,6 @@
 			<div class="inner">
 				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
 					Lucrezia Sorrentino</p>
-
-			</div>
-			<div id="inner">
-				<span>
-					<a href="#" th:href="@{/admin}" sec:authorize="isFullyAuthenticated()">Home</a>
-					- <a href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
-				</span>
 			</div>
 		</footer>
 

@@ -193,3 +193,42 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.bg-organizer {
+    /* The image used */
+    background-image: url("../../images/org.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-activity {
+    /* The image used */
+    background-image: url("../../images/act.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-tool {
+    /* The image used */
+    background-image: url("../../images/equip.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
