@@ -54,7 +54,7 @@
 		</div>
 		<!--/*@thymesVar id="dishes" type="java.util.List<Tool>"*/-->
 		<div class="row mb-2 justify-content-center" th:each="tool : ${tools}">
-			<div class="col-3"> <a href="#" th:href="@{'/tool' + '/' + ${tool.id}}"
+			<div class="col-3"> <a href="#" th:href="@{'/protected/tool' + '/' + ${tool.id}}"
 					th:text="${tool.name}">Whiteboard</a> </div>
 
 			<div class="col-5">
@@ -75,7 +75,7 @@
 
 		<div class="row mt-5" sec:authorize="hasRole('ADMIN')">
 			<div class="col">
-				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/organizerForm}">Add organizer</a>
+				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/toolForm}">Add tool</a>
 			</div>
 		</div>
 

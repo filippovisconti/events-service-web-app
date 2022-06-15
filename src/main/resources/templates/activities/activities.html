@@ -3,13 +3,13 @@
 
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Organizers</title>
+	<title>Activities</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
 </head>
 
-<body class="text-center bg-organizer">
+<body class="text-center bg-activity">
 
 	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
@@ -28,50 +28,54 @@
 		</header>
 
 
-		<div class="row my-4 bg-dark text-danger" th:if="${organizers.isEmpty()}">
-			<h4>No Organizers Available</h4>
+		<div class="row bg-dark my-4 text-danger" th:if="${activities.isEmpty()}">
+			<h4>No Activities Available</h4>
 		</div>
 
-		<div class="row my-4" th:unless="${organizers.isEmpty()}">
-			<h4> Available organizers</h4>
+		<div class="row my-4" th:unless="${activities.isEmpty()}">
+			<h4> Available activities</h4>
 
 		</div>
 
-		<div class="row my-2 justify-content-center" th:unless="${organizers.isEmpty()}">
+		<div class="row my-2 justify-content-center" th:unless="${activities.isEmpty()}">
 
-			<div class="col-4">
+			<div class="col-3">
 				<h5>Name</h5>
 			</div>
-			<div class="col-4">
-				<h5>Country</h5>
+			<div class="col-5">
+				<h5>Description</h5>
 			</div>
-			<div class="col-4" sec:authorize="hasRole('ADMIN')">
+			<div class="col-2">
+				<h5>Duration</h5>
+			</div>
+			<div class="col-2" sec:authorize="hasRole('ADMIN')">
 				<h5>Edit</h5>
 			</div>
-
 		</div>
-		<!--/*@thymesVar id="dishes" type="java.util.List<Organizer>"*/-->
-		<div class="row mb-2 justify-content-center" th:each="organizer : ${organizers}">
-			<div class="col-4"> <a href="#" th:href="@{'/protected/organizer' + '/' + ${organizer.id}}"
-					th:text="|${organizer.firstName}: ${organizer.lastName}|"> John Doe </a> </div>
+		<!--/*@thymesVar id="dishes" type="java.util.List<Activity>"*/-->
+		<div class="row mb-2 justify-content-center" th:each="activity : ${activities}">
+			<div class="col-3"> <a href="#" th:href="@{'/protected/activity' + '/' + ${activity.id}}"
+					th:text="${activity.name}">Meeting</a> </div>
 
-			<div class="col-4">
-				<p th:text="${organizer.description}"> United States </p>
+			<div class="col-5">
+				<p th:text="${activity.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
 			</div>
-
-			<div class="col-4" sec:authorize="hasRole('ADMIN')">
+			<div class="col-2">
+				<p th:text="|${activity.duration} hours|"> 2 hours </p>
+			</div>
+			<div class="col-2" sec:authorize="hasRole('ADMIN')">
 				<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
 					<a class="btn btn-danger btn-sm" href="#"
-						th:href="@{'/admin/delete/organizer' + '/' + ${organizer.id}}">Remove</a>
+						th:href="@{'/admin/delete/activity' + '/' + ${activity.id}}">Remove</a>
 					<a class="btn btn-warning btn-sm" href="#"
-						th:href="@{'/admin/edit/organizer' + '/' + ${organizer.id}}">Edit</a>
+						th:href="@{'/admin/edit/activity' + '/' + ${activity.id}}">Edit</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="row mt-5" sec:authorize="hasRole('ADMIN')">
 			<div class="col">
-				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/toolForm}">Add tool</a>
+				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/activityForm}">Add activity</a>
 			</div>
 		</div>
 
@@ -80,32 +84,32 @@
 				<tr>
 					<th>Name</th>
 					<th>Description</th>
-					<th>Cost</th>
+					<th>Duration</th>
 					<th>Edit</th>
 				</tr>
 			</thead>
 			<tbody>
 		
-				<tr th:each="organizer : ${organizers}">
+				<tr th:each="activity : ${activities}">
 					<td>
-						<a href="organizer.html/0" th:href="@{'/organizer' + '/' + ${organizer.id}}"
-							th:text="${organizer.name}">Whiteboard</a>
+						<a href="activity.html/0" th:href="@{'/activity' + '/' + ${activity.id}}"
+							th:text="${activity.name}">Whiteboard</a>
 					</td>
 
 					<td>
-						<p th:text="${organizer.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+						<p th:text="${activity.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
 					</td>
 
 					<td>
-						<p th:text="'$' + ${organizer.cost}"> $99.00 </p>
+						<p th:text="'$' + ${activity.duration}"> $99.00 </p>
 					</td>
 
 					<td>
 						<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
 							<a class="btn btn-danger btn-sm" href="#"
-								th:href="@{'/admin/delete/organizer' + '/' + ${organizer.id}}">Remove</a>
+								th:href="@{'/admin/delete/activity' + '/' + ${activity.id}}">Remove</a>
 							<a class="btn btn-warning btn-sm" href="#"
-								th:href="@{'/admin/edit/organizer' + '/' + ${buffet.id}}">Edit</a>
+								th:href="@{'/admin/edit/activity' + '/' + ${buffet.id}}">Edit</a>
 						</div>
 					</td>
 				</tr>
@@ -117,7 +121,6 @@
 			<div class="inner">
 				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
 					Lucrezia Sorrentino</p>
-
 			</div>
 		</footer>
 

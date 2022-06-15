@@ -27,7 +27,7 @@
 					<!--<a class="nav-link active" href="#">Home</a>-->
 					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
 					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasRole('DEFAULT')"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')"> Home </a>
+					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')"> Dashboard </a>
 
 					<a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
 					<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
