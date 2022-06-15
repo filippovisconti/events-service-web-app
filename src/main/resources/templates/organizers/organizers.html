@@ -45,7 +45,7 @@
 			<div class="col-4">
 				<h5>Country</h5>
 			</div>
-			<div class="col-4" sec:authorize="hasRole('ADMIN')">
+			<div class="col-4" sec:authorize="hasAuthority('ADMIN')">
 				<h5>Edit</h5>
 			</div>
 
@@ -59,7 +59,7 @@
 				<p th:text="${organizer.description}"> United States </p>
 			</div>
 
-			<div class="col-4" sec:authorize="hasRole('ADMIN')">
+			<div class="col-4" sec:authorize="hasAuthority('ADMIN')">
 				<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
 					<a class="btn btn-danger btn-sm" href="#"
 						th:href="@{'/admin/delete/organizer' + '/' + ${organizer.id}}">Remove</a>
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 
-		<div class="row mt-5" sec:authorize="hasRole('ADMIN')">
+		<div class="row mt-5" sec:authorize="hasAuthority('ADMIN')">
 			<div class="col">
 				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/toolForm}">Add tool</a>
 			</div>

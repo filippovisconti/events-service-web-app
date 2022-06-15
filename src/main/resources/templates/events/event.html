@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
+
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Delete Activity</title>
+	<title>Activity details</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
@@ -26,18 +27,40 @@
 			</div>
 		</header>
 
-		<figure class="text-center">
-			<h4>Delete a activity</h4>
-		</figure>
+		<div class="row my-4 text-danger" th:unless="${activity}">
+			<h4> This activity does not exist.</h4>
+		</div>
 
-		<div class="container">
-			<p th:text="'You are about to remove: ' + ${activity.name}">You are about to remove:
-				Whiteboard </p>
-			<form method="POST" th:action="@{'/admin/delete/activity' + '/' + ${activity.id}}" th:object="${activity}">
-				<button class="btn btn-danger" type="submit">Confirm</button>
-				<a class="btn btn-secondary" href="#" th:href="@{'/activities'}" th:text="Cancel">Cancel</a>
-			</form>
+		<div class="row my-4" th:if="${activity}">
+			<div class="col">
+				<h3> Details</h3>
+			</div>
+		</div>
 
+
+		<div class="row my-2" th:if="${activity}">
+
+			<div class="col-12 col-lg-8 align-self-center">
+				<div class="row my-3">
+					<div class="col">
+						<h2 th:text="${activity.name}">Meeting</h2>
+
+					</div>
+				</div>
+				<div class="row my-3">
+					<div class="col-10">
+						<p th:text="${activity.description}"> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						</p>
+					</div>
+					<div class="col-2">
+						<p th:text="|${activity.duration} hours|"> 2 hours </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-4">
+				<img class="img-fluid rounded-3" th:src="@{/images/conf_room.jpg}"
+					src="../../static/images/conf_room.jpg" alt="activity picture">
+			</div>
 		</div>
 
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
@@ -48,6 +71,7 @@
 			</div>
 		</footer>
 
+	</div>
 </body>
 
 </html>
