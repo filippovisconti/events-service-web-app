@@ -57,7 +57,7 @@ public class AuthController {
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			return "redirect:/admin";
 		} else if (credentials.getRole().equals(Credentials.DEFAULT_ROLE)) {
-			return "redirect:/user";
+			return "redirect:/protected";
 		}
 		return "redirect:/login";
 	}
@@ -68,7 +68,7 @@ public class AuthController {
 	}
 
 
-	@GetMapping("/user")
+	@GetMapping("/protected")
 	public String getUserHomePage (Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
