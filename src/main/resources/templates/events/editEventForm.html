@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Events</title>
+	<title>Edit event</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 		</header>
 
 		<figure class="text-center">
-			<h4>Add an event</h4>
+			<h4>Edit this event</h4>
 		</figure>
 
 		<div class="cover-container align-self-center">
@@ -75,17 +75,17 @@
 				<div class="row my-3 align-self-center justify-content-center">
 					<div class="col-md-8 mb-3">
 						<label class="form-label" for="datetimepicker4Input">Date:</label>
-						<div class='input-group' id='datetimepicker4' data-td-target-input='nearest'
-							data-td-target-toggle='nearest'>
-							<input id='datetimepicker4Input' type='text' class='form-control' th:field="*{date}"
-								data-td-target='#datetimepicker4' placeholder="01/01/2022 09:30 AM"
-								aria-labelledby="dtpickerHelp" required />
-							<span class='input-group-text' data-td-target='#datetimepicker4'
-								data-td-toggle='datetimepicker'>
+						<div class='input-group' id='datetimepicker4'>
+							<!--type='datetime-local'-->
+							<input id='datetimepicker4Input' type="text" class='form-control' th:field="*{date}"
+								placeholder="2022/12/31 09:30" required />
+							<span class='input-group-text'>
 								<span class='fa-solid fa-calendar'></span>
 								<!--Picker not working yet-->
 							</span>
 						</div>
+						<span class="text-danger" th:errors="*{date}" th:if="${#fields.hasErrors('date')}">
+							error date</span>
 						<small id="dtpickerHelp" class="form-text text-muted"> DD/MM/YYYY h:mm a</small>
 					</div>
 				</div>

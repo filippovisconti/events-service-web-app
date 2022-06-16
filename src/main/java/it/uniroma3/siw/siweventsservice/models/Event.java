@@ -35,7 +35,7 @@ public class Event {
 
 	//@DateTimeFormat(pattern = "dd/MM/yyyy h:mm a") 		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "YYYY-MM-DD HH:MM")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date date;
 	//https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-input-date
 	//https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datetime-picker

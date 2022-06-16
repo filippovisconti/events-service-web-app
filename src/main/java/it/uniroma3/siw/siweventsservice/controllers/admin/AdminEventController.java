@@ -55,6 +55,7 @@ public class AdminEventController {
 	@GetMapping("/edit/event/{id}")
 	public String getEventForm (@PathVariable Long id, Model model) {
 		model.addAttribute("activities", activityService.findAll());
+		model.addAttribute("organizersList", organizerService.findAll());
 		model.addAttribute("event", eventService.findById(id));
 		return "events/editEventForm.html";
 	}
@@ -75,6 +76,8 @@ public class AdminEventController {
 			model.addAttribute("event", event);
 			return "events/event.html";
 		} else {
+			model.addAttribute("activities", activityService.findAll());
+			model.addAttribute("organizersList", organizerService.findAll());
 			return "events/editEventForm.html";
 		}
 
