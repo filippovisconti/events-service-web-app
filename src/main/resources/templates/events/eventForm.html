@@ -67,24 +67,38 @@
 					</div>
 				</div>
 
-
 				<div class="row my-3 align-self-center justify-content-center">
-					<div class="col-md-8 mb-3">
-						<label class="form-label" for="datetimepicker4Input">Date:</label>
-						<div class='input-group' id='datetimepicker4' data-td-target-input='nearest'
-							data-td-target-toggle='nearest'>
-							<input id='datetimepicker4Input' type='text' class='form-control' th:field="*{date}"
-								data-td-target='#datetimepicker4' placeholder="01/01/2022 09:30 AM"
-								aria-labelledby="dtpickerHelp" required />
-							<span class='input-group-text' data-td-target='#datetimepicker4'
-								data-td-toggle='datetimepicker'>
+					<div class="col-md-9 mb-3">
+						<label class="form-label" for="datetimepicker4Input">Date and time:</label>
+						<div class='input-group' id='datetimepicker4'>
+							<input id='datetimepicker4Input' type='datetime-local' class='form-control'
+								th:field="*{date}" placeholder="01/01/2022 09:30 AM" aria-labelledby="dtpickerHelp"
+								required />
+							<span class='input-group-text'>
 								<span class='fa-solid fa-calendar'></span>
 								<!--Picker not working yet-->
 							</span>
 						</div>
-						<small id="dtpickerHelp" class="form-text text-muted"> DD/MM/YYYY h:mm a</small>
 					</div>
 				</div>
+
+				<!--<div class="row my-3 align-self-center justify-content-center">
+					<div class="col-md-8 mb-3">
+						<label class="form-label" for="datetimepicker4Input">Date:</label>
+						<div class='input-group' id='datetimepicker4' data-td-target-input='nearest'
+							data-td-target-toggle='nearest'>
+							<input id='datetimepicker4Input' type='datetime-local' class='form-control'
+								th:field="*{date}" data-td-target='#datetimepicker4' placeholder="01/01/2022 09:30 AM"
+								aria-labelledby="dtpickerHelp" required />
+							<span class='input-group-text' data-td-target='#datetimepicker4'
+								data-td-toggle='datetimepicker'>
+								<span class='fa-solid fa-calendar'></span>
+							Picker not working yet
+							</span>
+						</div>
+						<small id="dtpickerHelp" class="form-text text-muted"> DD/MM/YYYY h:mm a</small>
+					</div>
+				</div>-->
 				<div class="row mb-4 scrollable">
 					<div class="col">
 						<div class="row mt-3">
