@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -30,6 +31,16 @@ public class Activity {
 	@ManyToMany
 	private List<Tool> toolList;
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Activity activity = (Activity) o;
+		return name.equals(activity.name);
+	}
 
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
 }
