@@ -36,7 +36,7 @@
 				Whiteboard </p>
 			<form method="POST" th:action="@{'/admin/delete/event' + '/' + ${event.id}}" th:object="${event}">
 				<button class="btn btn-danger" type="submit">Confirm</button>
-				<a class="btn btn-secondary" href="#" th:href="@{'/activities'}" th:text="Cancel">Cancel</a>
+				<a class="btn btn-secondary" href="#" th:href="@{'/public/events'}" th:text="Cancel">Cancel</a>
 			</form>
 
 		</div>
