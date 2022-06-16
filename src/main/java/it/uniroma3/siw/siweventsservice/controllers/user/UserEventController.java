@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/protected")
 public class UserEventController {
@@ -29,7 +31,7 @@ public class UserEventController {
 
 
 	@GetMapping("/event/{id}")
-	public String getEvent(@PathVariable("id") Long id, Model model) {
+	public String getEvent (@PathVariable("id") Long id, Model model) {
 		Event e = this.eventService.findById(id);
 		model.addAttribute("event", e);
 		float duration = 0;
@@ -41,8 +43,11 @@ public class UserEventController {
 	}
 
 	@GetMapping("/explore")
-	public String getAllEvents(Model model) {
-		model.addAttribute("events", this.eventService.findAll());
+	public String getAllEvents (Model model) {
+		model.addAttribute("events",
+				this.eventService.findAll().stream()
+						.limit(4)
+						.collect(Collectors.toList()));
 		return "indexes/explore";
 	}
 
@@ -52,7 +57,7 @@ public class UserEventController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
 		if (principal instanceof UserDetails) {
-			username = ((UserDetails)principal).getUsername();
+			username = ((UserDetails) principal).getUsername();
 		} else {
 			username = principal.toString();
 		}
@@ -61,7 +66,7 @@ public class UserEventController {
 		Event e = this.eventService.findById(id);
 		e.getParticipants().add(user);
 		this.eventService.save(e);
-		
+
 		model.addAttribute("event", e);
 		float duration = 0;
 		for (Activity a : e.getActivityList()) {

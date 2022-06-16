@@ -35,16 +35,16 @@ public class Organizer {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Organizer organizer = (Organizer) o;
-		return Objects.equals(firstName, organizer.firstName) && Objects.equals(lastName, organizer.lastName) && Objects.equals(country, organizer.country);
+		return Objects.equals(firstName, organizer.firstName) && Objects.equals(lastName, organizer.lastName);
 	}
 
 	@Override
 	public int hashCode () {
-		return Objects.hash(firstName, lastName, country);
+		return Objects.hash(firstName, lastName);
 	}
 
 	@Override
 	public String toString () {
-		return firstName + " " + lastName + ", " + country;
+		return firstName + " " + lastName;
 	}
 }
