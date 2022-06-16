@@ -34,7 +34,7 @@
 		<div class="cover-container align-self-center">
 
 			<form id="newActivityForm" method="POST" th:action="@{/admin/activity}" th:object="${activity}">
-				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+				<div class="text-danger" th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>
 				<div class="mb-3">
@@ -62,12 +62,12 @@
 					</div>
 
 				</div>
-				<div class="row">
+				<div class="row mb-5">
 					<div class="col">
 						<div class="row mt-3">
 							<legend>Select tools</legend>
 						</div>
-						<div class="row mb-5" th:each="tool: ${tools}">
+						<div class="row" th:each="tool: ${tools}">
 							<div class="col">
 								<input type="checkbox" id="tools" th:field="*{toolList}" name="tool"
 									th:value="${tool.id}">

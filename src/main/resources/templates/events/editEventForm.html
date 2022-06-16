@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Tools</title>
+	<title>Events</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" />
 </head>
 
-<body class="text-center bg-tool">
+<body class="text-center bg-event">
 
 	<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
@@ -28,46 +30,79 @@
 		</header>
 
 		<figure class="text-center">
-			<h4>Add a tool</h4>
+			<h4>Add an event</h4>
 		</figure>
 
 		<div class="cover-container align-self-center">
 
-			<form id="newToolForm" method="POST" th:action="@{/admin/edit/tool/{id}(id=${tool.id})}"
-				th:object="${tool}">
-				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+			<form id="newEventForm" method="POST" th:action="@{/admin/edit/event/{id}(id=${event.id})}"
+				th:object="${event}">
+				<div class="text-danger" th:if="${#fields.hasGlobalErrors()}">
 					<p class="" th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors
 					</p>
 				</div>
-				<div class="mb-3">
-					<label for="toolname" class="form-label">Name</label>
-					<input type="text" class="form-control" id="toolname" aria-describedby="toolNameHelp"
-						th:field="*{name}" th:value="*{name}" />
-					<div id="toolNameHelp" class="form-text">e.g.: Whiteboard</div>
-				</div>
 
-				<div class="mb-3">
-					<div class="input-group">
-						<span class="input-group-text">Description</span>
-						<textarea class="form-control" aria-label="Description" aria-describedby="toolDescrHelp2"
-							th:field="*{description}" th:value="*{description}" /> Enter here your description
-						</textarea>
+				<div class="row my-3 align-self-center justify-content-center">
+
+					<div class="col-md-6">
+						<label for="eventname" class="form-label">Name</label>
+						<input type="text" class="form-control" id="eventname" th:field="*{name}" th:value="*{name}"
+							placeholder="Meeting" required />
+						<span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+							error name</span>
 					</div>
-					<div id="toolDescrHelp2" class="form-text">e.g.: a 120x80cm Whiteboard</div>
-				</div>
 
-				<div class="mb-3">
-					<label for="toolCost" class="form-label">Cost</label>
-					<div class="input-group">
-						<span class="input-group-text">$</span>
-						<input type="text" class="form-control" id="toolCost"
-							aria-label="Amount (to the nearest dollar)" aria-describedby="toolCostHelp"
-							th:field="*{cost}" th:value="*{cost}" />
-						<span class="input-group-text">.00</span>
+					<div class="col-md-6">
+						<label for="organizer" class="form-label">Select organizer</label>
+						<select class="form-control" id="organizer" th:field="*{organizer}">
+							<option th:each="c : ${organizersList}" th:value="${c.id}" th:text="${c}"> Topo Lino
+							</option>
+						</select>
 					</div>
-					<div id="toolCostHelp" class="form-text">e.g.: 99.00</div>
 				</div>
 
+				<div class="row my-3 align-self-center justify-content-center">
+					<div class="col mb-3">
+						<div class="input-group">
+							<span class="input-group-text">Description</span>
+							<textarea class="form-control" aria-label="Description" th:field="*{description}"
+								th:value="*{description}" placeholder="Entere here the description" required></textarea>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row my-3 align-self-center justify-content-center">
+					<div class="col-md-8 mb-3">
+						<label class="form-label" for="datetimepicker4Input">Date:</label>
+						<div class='input-group' id='datetimepicker4' data-td-target-input='nearest'
+							data-td-target-toggle='nearest'>
+							<input id='datetimepicker4Input' type='text' class='form-control' th:field="*{date}"
+								data-td-target='#datetimepicker4' placeholder="01/01/2022 09:30 AM"
+								aria-labelledby="dtpickerHelp" required />
+							<span class='input-group-text' data-td-target='#datetimepicker4'
+								data-td-toggle='datetimepicker'>
+								<span class='fa-solid fa-calendar'></span>
+								<!--Picker not working yet-->
+							</span>
+						</div>
+						<small id="dtpickerHelp" class="form-text text-muted"> DD/MM/YYYY h:mm a</small>
+					</div>
+				</div>
+				<div class="row mb-4 scrollable">
+					<div class="col">
+						<div class="row mt-3">
+							<legend>Select activities</legend>
+						</div>
+						<div class="row mb-1 " th:each="activity: ${activities}">
+							<div class="col">
+								<input type="checkbox" id="activities" th:field="*{activityList}" name="activity"
+									th:value="${activity.id}">
+								<label for="activities" th:text="${activity.name}"> Activity name</label>
+							</div>
+						</div>
+					</div>
+				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 
@@ -80,9 +115,7 @@
 
 			</div>
 		</footer>
-
 	</div>
 </body>
-
 
 </html>

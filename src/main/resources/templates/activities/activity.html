@@ -57,6 +57,15 @@
 					</div>
 				</div>
 			</div>
+
+			<div>
+				<ul>
+					<li th:each="tool : ${activity.toolList}">
+						<a href="#" th:href="@{'/protected/tool' + '/' + ${tool.id}}"
+							th:text="${tool.name}">Whiteboard</a>
+					</li>
+				</ul>
+			</div>
 			<div class="col-12 col-lg-4">
 				<img class="img-fluid rounded-3" th:src="@{/images/conf_room.jpg}"
 					src="../../static/images/conf_room.jpg" alt="activity picture">

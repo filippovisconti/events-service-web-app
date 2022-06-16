@@ -53,10 +53,10 @@
 		<!--/*@thymesVar id="dishes" type="java.util.List<Organizer>"*/-->
 		<div class="row mb-2 justify-content-center" th:each="organizer : ${organizers}">
 			<div class="col-4"> <a href="#" th:href="@{'/protected/organizer' + '/' + ${organizer.id}}"
-					th:text="|${organizer.firstName}: ${organizer.lastName}|"> John Doe </a> </div>
+					th:text="|${organizer.firstName} ${organizer.lastName}|"> John Doe </a> </div>
 
 			<div class="col-4">
-				<p th:text="${organizer.description}"> United States </p>
+				<p th:text="${organizer.country}"> United States </p>
 			</div>
 
 			<div class="col-4" sec:authorize="hasAuthority('ADMIN')">

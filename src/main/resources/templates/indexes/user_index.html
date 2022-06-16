@@ -1,104 +1,62 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.w3.org/1999/xhtml"
->
-  <head
-    th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))"
-  >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
     <title>Admin dashboard</title>
-    <link
-      th:href="@{/css/bootstrap/css/bootstrap.css}"
-      href="../../static/css/bootstrap/css/bootstrap.css"
-      rel="stylesheet"
-    />
-    <link
-      th:href="@{/css/custom/base.css}"
-      href="../../static/css/custom/base.css"
-      rel="stylesheet"
-    />
-  </head>
+    <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
+        rel="stylesheet" />
+    <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet" />
+</head>
 
-  <body class="text-center bg-home">
+<body class="text-center bg-home">
     <div class="container d-flex h-100 p-3 mx-auto flex-column">
-      <header
-        class="masthead mb-auto"
-        th:replace="fragments/components :: header"
-      >
-        <div class="inner">
-          <h3 class="masthead-brand">EventManagement</h3>
+        <header class="masthead mb-auto" th:replace="fragments/components :: header">
+            <div class="inner">
+                <h3 class="masthead-brand">EventManagement</h3>
 
-          <nav class="nav nav-masthead justify-content-center">
-            <!--<a class="nav-link active" href="#">Home</a>-->
-            <a
-              class="nav-link"
-              href="#"
-              th:href="@{/}"
-              sec:authorize="!isFullyAuthenticated()"
-              >Home</a
-            >
-            <a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
-            <a class="nav-link" href="#" th:href="@{/public/activities}"
-              >Activities</a
-            >
-            <a
-              class="nav-link"
-              href="#"
-              th:href="@{/login}"
-              sec:authorize="!isFullyAuthenticated()"
-              >Login</a
-            >
-          </nav>
+                <nav class="nav nav-masthead justify-content-center">
+                    <!--<a class="nav-link active" href="#">Home</a>-->
+                    <a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()">Home</a>
+                    <a class="nav-link" href="#" th:href="@{/public/events}">Events</a>
+                    <a class="nav-link" href="#" th:href="@{/public/activities}">Activities</a>
+                    <a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()">Login</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="row mb-5">
+            <div class="col">
+                <h2>Welcome,</h2>
+                <h1>
+                    <div sec:authentication="name"></div>
+                </h1>
+            </div>
         </div>
-      </header>
 
-      <div class="row mb-5">
-        <div class="col">
-          <h2>Welcome,</h2>
-          <h1>
-            Name
-            <div sec:authentication="name"></div>
-          </h1>
+        <div class="row my-4 text-danger" th:unless="${!user.eventList.isEmpty()}">
+            <h4>No events available.</h4>
         </div>
-      </div>
 
-      <div
-        class="row my-4 text-danger"
-        th:unless="${!user.eventList.isEmpty()}"
-      >
-        <h4>No events available.</h4>
-      </div>
-
-      <div th:if="${!user.eventList.isEmpty()}">
-        <h4>Events available</h4>
-      </div>
-      <div th:each="event : ${user.eventList}">
-        <div>
-          <a
-            th:href="@{'/protected/event' + '/' + ${event.id}}"
-            th:text="event.name"
-          >
-            Event name</a
-          >
+        <div th:if="${!user.eventList.isEmpty()}">
+            <h4>Events available</h4>
         </div>
-      </div>
-
-      <footer
-        class="mastfoot mt-auto"
-        th:replace="fragments/components :: footer"
-      >
-        <div class="inner">
-          <p>
-            &copy;2022
-            <a
-              class="text-decoration-none"
-              href="https://www.filippovisconti.com"
-              >Filippo Visconti</a
-            >, Allegra Strippoli, Lucrezia Sorrentino
-          </p>
+        <div th:each="event : ${user.eventList}">
+            <div>
+                <a th:href="@{'/protected/event' + '/' + ${event.id}}" th:text="event.name">
+                    Event name</a>
+            </div>
         </div>
-      </footer>
+
+        <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+            <div class="inner">
+                <p>
+                    &copy;2022
+                    <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra
+                    Strippoli, Lucrezia Sorrentino
+                </p>
+            </div>
+        </footer>
     </div>
-  </body>
+</body>
+
 </html>
