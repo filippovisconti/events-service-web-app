@@ -40,24 +40,25 @@
 
     <div class="row my-2" th:if="${user}">
 
-        <div class="col-12 col-lg-8 align-self-center">
-            <div class="row my-3">
-                <div class="col">
-                    <h2 th:text="|${user.firstName} ${user.lastName}|"></h2>
-                </div>
-            </div>
-
+            <div class="col-12 col-lg-8 align-self-center">
                 <div class="row my-3">
-                    <div class="col-10">
-                        <p th:text="${user.email}"></p>
+                    <div class="col">
+                        <h2 th:text="|${user.firstName} ${user.lastName}|"></h2>
                     </div>
+                </div>
+
+                    <div class="row my-3">
+                        <div class="col-10">
+                            <p th:text="${user.email}"></p>
+                        </div>
+                    </div>
+
             </div>
 
-        </div>
-        <div class="col-12 col-lg-4">
-            <img class="img-fluid rounded-3" th:src="@{/images/conf_room.jpg}"
-                 src="../../static/images/conf_room.jpg" alt="activity picture">
-        </div>
+            <div class="col-12 col-lg-4">
+                <img class="img-fluid rounded-3" th:src="@{/images/conf_room.jpg}"
+                     src="../../static/images/conf_room.jpg" alt="activity picture">
+            </div>
     </div>
 
         <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
