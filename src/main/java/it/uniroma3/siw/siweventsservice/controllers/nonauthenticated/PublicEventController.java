@@ -25,5 +25,11 @@ public class PublicEventController {
 		return "events/events";
 	}
 
+	@GetMapping("/explore")
+	public String exploreEvents(Model model) {
+		model.addAttribute("events", this.eventService.findAll());
+		return "indexes/explore";
+	}
+
 
 }

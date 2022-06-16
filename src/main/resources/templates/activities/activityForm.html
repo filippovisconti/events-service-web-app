@@ -62,12 +62,12 @@
 					</div>
 
 				</div>
-				<div class="row">
+				<div class="row mb-5">
 					<div class="col">
 						<div class="row mt-3">
 							<legend>Select tools</legend>
 						</div>
-						<div class="row mb-5" th:each="tool: ${tools}">
+						<div class="row" th:each="tool: ${tools}">
 							<div class="col">
 								<input type="checkbox" id="tools" th:field="*{toolList}" name="tool"
 									th:value="${tool.id}">
