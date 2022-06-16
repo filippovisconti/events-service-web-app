@@ -1,6 +1,7 @@
 package it.uniroma3.siw.siweventsservice.auth.controller;
 
 import it.uniroma3.siw.siweventsservice.auth.models.Credentials;
+import it.uniroma3.siw.siweventsservice.auth.models.User;
 import it.uniroma3.siw.siweventsservice.auth.service.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,7 +57,7 @@ public class AuthController {
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			return "redirect:/admin";
 		} else if (credentials.getRole().equals(Credentials.DEFAULT_ROLE)) {
-			return "redirect:/user";
+			return "redirect:/protected";
 		}
 		return "redirect:/login";
 	}
@@ -67,8 +68,17 @@ public class AuthController {
 	}
 
 
-	@GetMapping("/user")
-	public String getUserHomePage () {
+	@GetMapping("/protected")
+	public String getUserHomePage (Model model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		User user = credentialsService.getUserDetails(username);
+		model.addAttribute("user", user);
 		return "indexes/user_index";
 	}
 
