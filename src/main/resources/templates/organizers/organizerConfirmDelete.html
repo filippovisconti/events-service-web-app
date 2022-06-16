@@ -38,7 +38,7 @@
 			<form method="POST" th:action="@{'/admin/delete/organizer' + '/' + ${organizer.id}}"
 				th:object="${organizer}">
 				<button class="btn btn-danger" type="submit">Confirm</button>
-				<a class="btn btn-secondary" href="#" th:href="@{'/organizers'}" th:text="Cancel">Cancel</a>
+				<a class="btn btn-secondary" href="#" th:href="@{'/public/organizers'}" th:text="Cancel">Cancel</a>
 			</form>
 
 		</div>

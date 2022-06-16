@@ -3,6 +3,10 @@ package it.uniroma3.siw.siweventsservice.auth.controller;
 import it.uniroma3.siw.siweventsservice.auth.models.Credentials;
 import it.uniroma3.siw.siweventsservice.auth.models.User;
 import it.uniroma3.siw.siweventsservice.auth.service.CredentialsService;
+import it.uniroma3.siw.siweventsservice.auth.service.UserService;
+import it.uniroma3.siw.siweventsservice.services.ActivityService;
+import it.uniroma3.siw.siweventsservice.services.EventService;
+import it.uniroma3.siw.siweventsservice.services.OrganizerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +24,18 @@ public class AuthController {
 
 	@Autowired
 	private CredentialsService credentialsService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private EventService eventService;
+
+	@Autowired
+	private OrganizerService organizerService;
+
+	@Autowired
+	private ActivityService activityService;
 
 	@GetMapping("/login")
 	public String showLoginForm (Model model) {
@@ -63,7 +79,11 @@ public class AuthController {
 	}
 
 	@GetMapping("/admin")
-	public String getAdminHomePage () {
+	public String getAdminHomePage (Model model) {
+		model.addAttribute("numEvents", this.eventService.eventNumber());
+		model.addAttribute("numUsers", this.userService.userNumber());
+		model.addAttribute("numOrganizers", this.organizerService.organizerNumber());
+		model.addAttribute("numActivities", this.activityService.activityNumber());
 		return "indexes/admin_index";
 	}
 

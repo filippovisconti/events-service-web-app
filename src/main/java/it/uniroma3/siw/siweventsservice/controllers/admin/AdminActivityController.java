@@ -36,11 +36,13 @@ public class AdminActivityController {
 	@PostMapping("/activity")
 	public String newActivity (@Valid @ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
 		 this.activityValidator.validate(activity, bindingResult);
+
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.activityService.save(activity); // salvo un oggetto Activity
 			model.addAttribute("activity", this.activityService.findById(activity.getId()));
 			return "activities/activity.html";      // presenta un pagina con la activity appena salvata
 		} else {
+			model.addAttribute("tools", toolService.findAll());
 			return "activities/activityForm.html"; // ci sono errori, torna alla form iniziale
 		}
 	}

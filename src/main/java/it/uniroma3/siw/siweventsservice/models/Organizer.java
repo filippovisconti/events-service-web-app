@@ -42,4 +42,9 @@ public class Organizer {
 	public int hashCode () {
 		return Objects.hash(firstName, lastName, country);
 	}
+
+	@Override
+	public String toString () {
+		return firstName + " " + lastName + ", " + country;
+	}
 }

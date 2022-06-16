@@ -35,6 +35,9 @@ public class EventService {
 		return l;
 	}
 
+	public int eventNumber(){
+		return findAll().size();
+	}
 	public Event findById (Long id) {
 		var p = eventRepository.findById(id);
 		if (p.isPresent()) return p.get();

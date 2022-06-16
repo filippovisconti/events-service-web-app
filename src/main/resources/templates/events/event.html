@@ -47,7 +47,7 @@
 						<h2 th:text="${event.name}">Conference 101</h2>
 					</div>
 					<div class="col-12 col-md-5 my-auto">
-						<h5> curated by <a href="#" th:href="@{'/protected/organizer' + '/' + ${organizer.id}}"
+						<h5> curated by <a href="#" th:href="@{'/protected/organizer' + '/' + ${event.organizer.id}}"
 								th:text="${event.organizer}">John Doe</a> </h5>
 					</div>
 				</div>

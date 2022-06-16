@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +33,9 @@ public class Event {
 	@ManyToOne
 	private Organizer organizer;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
+	//@DateTimeFormat(pattern = "dd/MM/yyyy h:mm a") 		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "YYYY-MM-DD HH:MM")
 	private Date date;
 	//https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-input-date
 	//https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datetime-picker

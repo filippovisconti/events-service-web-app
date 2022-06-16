@@ -1,6 +1,8 @@
 package it.uniroma3.siw.siweventsservice.validators;
 
+import it.uniroma3.siw.siweventsservice.models.Event;
 import it.uniroma3.siw.siweventsservice.models.Tool;
+import it.uniroma3.siw.siweventsservice.services.EventService;
 import it.uniroma3.siw.siweventsservice.services.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +13,7 @@ import org.springframework.validation.Validator;
 public class EventValidator implements Validator {
 
 	@Autowired
-	private ToolService toolService;
+	private EventService eventService;
 
 	/**
 	 * Can this {@link Validator} {@link #validate(Object, Errors) validate}
@@ -29,7 +31,7 @@ public class EventValidator implements Validator {
 	 */
 	@Override
 	public boolean supports (Class<?> clazz) {
-		return Tool.class.equals(clazz);
+		return Event.class.equals(clazz);
 	}
 
 	/**
@@ -44,8 +46,8 @@ public class EventValidator implements Validator {
 	 */
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.toolService.hasDuplicate((Tool) target)){
-			errors.reject("tool.duplicate", "duplicate tool");
+		if (this.eventService.hasDuplicate((Event) target)){
+			errors.reject("event.duplicate", "duplicate event");
 		}
 	}
 }

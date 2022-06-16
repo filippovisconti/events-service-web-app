@@ -4,6 +4,7 @@ import it.uniroma3.siw.siweventsservice.auth.models.User;
 import it.uniroma3.siw.siweventsservice.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,10 @@ public class UserService {
 		return users;
 	}
 
+	public int userNumber(){
+		return findAll().size();
+	}
+	@Transactional
 	public User saveUser (User user) {
 		return userRepository.save(user);
 	}

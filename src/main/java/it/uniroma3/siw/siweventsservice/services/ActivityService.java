@@ -35,6 +35,9 @@ public class ActivityService {
 		return l;
 	}
 
+	public int activityNumber(){
+		return findAll().size();
+	}
 	public Activity findById (Long id) {
 		var p = activityRepository.findById(id);
 		if (p.isPresent()) return p.get();

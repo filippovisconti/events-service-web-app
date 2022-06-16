@@ -62,7 +62,7 @@
 					th:text="${event.name}">Meeting</a> </div>
 
 			<div class="col-3">
-				<a href="#" th:href="@{'/protected/organizer' + '/' + ${organizer.id}}"
+				<a href="#" th:href="@{'/protected/organizer' + '/' + ${event.organizer.id}}"
 					th:text="${event.organizer}">John Doe</a>
 			</div>
 			<div class="col-3">
