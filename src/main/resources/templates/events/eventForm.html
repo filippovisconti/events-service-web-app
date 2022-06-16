@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-	<title>Events</title>
+	<title>Add Event</title>
 	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
 		rel="stylesheet">
 	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" />
 </head>
 
 <body class="text-center bg-event">
@@ -28,59 +30,71 @@
 		</header>
 
 		<figure class="text-center">
-			<h4>Add a event</h4>
+			<h4>Add an event</h4>
 		</figure>
 
 		<div class="cover-container align-self-center">
 
 			<form id="newEventForm" method="POST" th:action="@{/admin/event}" th:object="${event}">
-				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+				<div class="text-danger" th:if="${#fields.hasGlobalErrors()}">
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors </p>
 				</div>
-				<div class="col-md-6 mb-3">
-					<label for="eventname" class="form-label">Name</label>
-					<input type="text" class="form-control" id="eventname" th:field="*{name}" th:value="*{name}"
-						placeholder="Meeting" required />
+				<div class="row my-3 align-self-center justify-content-center">
 
-				</div>
-
-				<div class="col-md-6 mb-3">
-					<label for="organizer">Select organizer</label>
-					<select class="form-control" id="organizer" th:field="*{chef}">
-						<option>Select Organizer</option>
-						<option th:each="c : ${organizersList}" th:value="${c.id}" th:text="${c}"> John Doe
-						</option>
-					</select>
-				</div>
-
-				<div class="col-md-6 mb-3">
-					<div class="input-group">
-						<span class="input-group-text">Description</span>
-						<textarea class="form-control" aria-label="Description" th:field="*{description}"
-							th:value="*{description}" placeholder="Entere here the description" required></textarea>
+					<div class="col-md-6">
+						<label for="eventname" class="form-label">Name</label>
+						<input type="text" class="form-control" id="eventname" th:field="*{name}" th:value="*{name}"
+							placeholder="Meeting" required />
+						<span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+							error name</span>
 					</div>
 
-				</div>
-
-				<div class="mb-3">
-					<label for="eventDuration" class="form-label">Duration</label>
-					<div class="input-group">
-						<input type="text" class="form-control" id="eventDuration" aria-label="Hours"
-							th:field="*{duration}" th:value="*{duration}" placeholder="e.g.: 2,5" />
-						<span class="input-group-text">hours</span>
+					<div class="col-md-6">
+						<label for="organizer" class="form-label">Select organizer</label>
+						<select class="form-control" id="organizer" th:field="*{organizer}">
+							<option th:each="c : ${organizersList}" th:value="${c.id}" th:text="${c}"> Topo Lino
+							</option>
+						</select>
 					</div>
-
 				</div>
-				<div class="row">
+				<div class="row my-3 align-self-center justify-content-center">
+					<div class="col mb-3">
+						<div class="input-group">
+							<span class="input-group-text">Description</span>
+							<textarea class="form-control" aria-label="Description" th:field="*{description}"
+								th:value="*{description}" placeholder="Entere here the description" required></textarea>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row my-3 align-self-center justify-content-center">
+					<div class="col-md-8 mb-3">
+						<label class="form-label" for="datetimepicker4Input">Date:</label>
+						<div class='input-group' id='datetimepicker4' data-td-target-input='nearest'
+							data-td-target-toggle='nearest'>
+							<input id='datetimepicker4Input' type='text' class='form-control' th:field="*{date}"
+								data-td-target='#datetimepicker4' placeholder="01/01/2022 09:30 AM"
+								aria-labelledby="dtpickerHelp" required />
+							<span class='input-group-text' data-td-target='#datetimepicker4'
+								data-td-toggle='datetimepicker'>
+								<span class='fa-solid fa-calendar'></span>
+								<!--Picker not working yet-->
+							</span>
+						</div>
+						<small id="dtpickerHelp" class="form-text text-muted"> DD/MM/YYYY h:mm a</small>
+					</div>
+				</div>
+				<div class="row mb-4 scrollable">
 					<div class="col">
 						<div class="row mt-3">
 							<legend>Select activities</legend>
 						</div>
-						<div class="row mb-5" th:each="activity: ${activities}">
+						<div class="row mb-1 " th:each="activity: ${activities}">
 							<div class="col">
 								<input type="checkbox" id="activities" th:field="*{activityList}" name="activity"
 									th:value="${activity.id}">
-								<label for="activities" th:text="${activity.name}">Tool name</label>
+								<label for="activities" th:text="${activity.name}"> Activity name</label>
 							</div>
 						</div>
 					</div>
@@ -97,9 +111,7 @@
 
 			</div>
 		</footer>
-
 	</div>
 </body>
-
 
 </html>

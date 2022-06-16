@@ -233,3 +233,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.scrollable {
+
+    max-height: 15vh;
+    overflow-y: scroll;
+}

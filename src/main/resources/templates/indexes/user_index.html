@@ -28,16 +28,24 @@
         </header>
 
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col">
+                <h2>
+                    Welcome,
+                </h2>
                 <h1>
-                    Welcome User
+                    <div sec:authentication="name"></div>
                 </h1>
-                <div class="btn-group btn-group-lg my-3">
-                    <a class="btn btn-lg btn-success" href="#" th:href="@{/}">Explore </a>
-                    <a class="btn btn-lg btn-secondary" href="#" th:href="@{/register}">Sign up</a>
-                    <a class="btn btn-lg btn-danger" href="#" th:href="@{/login}">Login</a>
-                </div>
+                <!--<h4>
+					<div sec:authentication="principal.authorities"></div>
+				</h4>-->
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col">
+                <a class="btn btn-lg btn-success" href="#" th:href="@{/protected/explore}">Explore </a>
+
             </div>
         </div>
 

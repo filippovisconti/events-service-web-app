@@ -19,4 +19,10 @@ public class UserEventController {
 		model.addAttribute("event", this.eventService.findById(id));
 		return "events/event";
 	}
+
+	@GetMapping("/explore")
+	public String getAllEvents(Model model) {
+		model.addAttribute("events", this.eventService.findAll());
+		return "indexes/explore";
+	}
 }
