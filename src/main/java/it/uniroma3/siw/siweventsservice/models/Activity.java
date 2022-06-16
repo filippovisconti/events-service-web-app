@@ -24,7 +24,7 @@ public class Activity {
 	@NotBlank
 	private String description;
 
-	private Duration duration;
+	private Float duration;
 
 	@NotEmpty
 	@ManyToMany

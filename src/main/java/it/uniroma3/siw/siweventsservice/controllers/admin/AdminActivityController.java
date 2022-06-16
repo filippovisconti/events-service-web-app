@@ -40,10 +40,9 @@ public class AdminActivityController {
 			this.activityService.save(activity); // salvo un oggetto Activity
 			model.addAttribute("activity", this.activityService.findById(activity.getId()));
 			return "activities/activity.html";      // presenta un pagina con la activity appena salvata
-		} else
+		} else {
 			return "activities/activityForm.html"; // ci sono errori, torna alla form iniziale
-
-
+		}
 	}
 
 	@GetMapping("/edit/activity/{id}")
