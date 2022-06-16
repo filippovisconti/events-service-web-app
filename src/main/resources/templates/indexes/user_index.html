@@ -34,7 +34,7 @@
         </div>
 
         <div class="row my-4 text-danger" th:unless="${!user.eventList.isEmpty()}">
-            <h4>No events available.</h4>
+            <h4>You haven't registered to any event yet.</h4>
         </div>
 
         <div th:if="${!user.eventList.isEmpty()}">
