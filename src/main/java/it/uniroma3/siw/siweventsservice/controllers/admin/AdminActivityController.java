@@ -83,6 +83,7 @@ public class AdminActivityController {
 	public String deleteActivity (@PathVariable("id") Long id, Model model) {
 		try {
 			this.activityService.deleteActivityById(id);
+			model.addAttribute("activities", this.activityService.findAll());
 			return "activities/activities.html";
 		} catch (Exception e) {
 			return "error.html";

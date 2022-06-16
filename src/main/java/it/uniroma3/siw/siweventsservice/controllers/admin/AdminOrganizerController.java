@@ -79,6 +79,7 @@ public class AdminOrganizerController {
 	public String deleteOrganizer (@PathVariable("id") Long id, Model model) {
 		try {
 			this.organizerService.deleteOrganizerById(id);
+			model.addAttribute("organizers", this.organizerService.findAll());
 			return "organizers/organizers.html";
 		} catch (Exception e) {
 			return "error.html";
