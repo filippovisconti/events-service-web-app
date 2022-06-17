@@ -19,29 +19,31 @@ public class CredentialsService {
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 
-	public Credentials getCredentials(Long id){
+	public Credentials getCredentials (Long id) {
 		var p = credentialsRepository.findById(id);
 		if (p.isPresent()) return p.get();
 		return null;
 	}
-	public Credentials getCredentials(String username){
+
+	public Credentials getCredentials (String username) {
 		Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
 		return result.orElse(null);
 	}
 
-	public User getUserDetails(String username){
+	public User getUserDetails (String username) {
 		try {
 			return getCredentials(username).getUser();
-		} catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			System.out.println("No user found. " + e.getMessage());
 			return null;
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Generic error: " + e.getMessage());
 			return null;
 		}
 	}
+
 	@Transactional
-	public Credentials saveCredentials(Credentials credentials){
+	public Credentials saveCredentials (Credentials credentials) {
 		credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
 		return credentialsRepository.save(credentials);
 	}

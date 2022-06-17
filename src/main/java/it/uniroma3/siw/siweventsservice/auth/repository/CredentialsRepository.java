@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface CredentialsRepository extends CrudRepository<Credentials, Long> {
-	 Optional<Credentials> findByUsername(String username);
+	Optional<Credentials> findByUsername (String username);
 
 }

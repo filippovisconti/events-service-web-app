@@ -15,7 +15,7 @@ public class UserActivityController {
 	private ActivityService activityService;
 
 	@GetMapping("/activity/{id}")
-	public String getActivity(@PathVariable("id") Long id, Model model) {
+	public String getActivity (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("activity", this.activityService.findById(id));
 		return "activities/activity";
 	}

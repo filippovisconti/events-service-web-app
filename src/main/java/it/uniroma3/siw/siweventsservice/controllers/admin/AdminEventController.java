@@ -1,15 +1,11 @@
 package it.uniroma3.siw.siweventsservice.controllers.admin;
 
-import it.uniroma3.siw.siweventsservice.auth.models.User;
-import it.uniroma3.siw.siweventsservice.auth.service.CredentialsService;
 import it.uniroma3.siw.siweventsservice.models.Event;
 import it.uniroma3.siw.siweventsservice.services.ActivityService;
 import it.uniroma3.siw.siweventsservice.services.EventService;
 import it.uniroma3.siw.siweventsservice.services.OrganizerService;
 import it.uniroma3.siw.siweventsservice.validators.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;

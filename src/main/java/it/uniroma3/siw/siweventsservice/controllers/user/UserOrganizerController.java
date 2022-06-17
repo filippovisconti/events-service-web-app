@@ -15,7 +15,7 @@ public class UserOrganizerController {
 	private OrganizerService organizerService;
 
 	@GetMapping("/organizer/{id}")
-	public String getOrganizer(@PathVariable("id") Long id, Model model) {
+	public String getOrganizer (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("organizer", this.organizerService.findById(id));
 		return "organizers/organizer";
 	}

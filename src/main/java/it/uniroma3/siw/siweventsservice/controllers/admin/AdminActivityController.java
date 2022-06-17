@@ -4,7 +4,6 @@ import it.uniroma3.siw.siweventsservice.models.Activity;
 import it.uniroma3.siw.siweventsservice.services.ActivityService;
 import it.uniroma3.siw.siweventsservice.services.ToolService;
 import it.uniroma3.siw.siweventsservice.validators.ActivityValidator;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +34,7 @@ public class AdminActivityController {
 
 	@PostMapping("/activity")
 	public String newActivity (@Valid @ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
-		 this.activityValidator.validate(activity, bindingResult);
+		this.activityValidator.validate(activity, bindingResult);
 
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.activityService.save(activity); // salvo un oggetto Activity
@@ -71,7 +70,7 @@ public class AdminActivityController {
 			return "activities/activity.html";
 		} else {
 			return "activities/editActivityForm.html";
-				}
+		}
 
 	}
 

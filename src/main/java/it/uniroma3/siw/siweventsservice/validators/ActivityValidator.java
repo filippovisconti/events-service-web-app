@@ -44,7 +44,7 @@ public class ActivityValidator implements Validator {
 	 */
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.activityService.hasDuplicate((Activity) target)){
+		if (this.activityService.hasDuplicate((Activity) target)) {
 			errors.reject("activity.duplicate", "duplicate activity");
 		}
 	}

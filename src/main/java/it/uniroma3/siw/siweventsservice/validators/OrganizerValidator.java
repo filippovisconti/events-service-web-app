@@ -44,7 +44,7 @@ public class OrganizerValidator implements Validator {
 	 */
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.organizerService.hasDuplicate((Organizer) target)){
+		if (this.organizerService.hasDuplicate((Organizer) target)) {
 			errors.reject("organizer.duplicate", "duplicate organizer");
 		}
 	}

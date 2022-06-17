@@ -10,7 +10,5 @@ import java.util.Date;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
 
-	boolean existsByName(String name);
-
-	boolean existsByNameAndDate(String name, Date date);
+	boolean existsByNameAndDate (String name, Date date);
 }

@@ -44,7 +44,7 @@ public class ToolValidator implements Validator {
 	 */
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.toolService.hasDuplicate((Tool) target)){
+		if (this.toolService.hasDuplicate((Tool) target)) {
 			errors.reject("tool.duplicate", "duplicate tool");
 		}
 	}

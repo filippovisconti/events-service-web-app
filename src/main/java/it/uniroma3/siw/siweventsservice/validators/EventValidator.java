@@ -1,9 +1,7 @@
 package it.uniroma3.siw.siweventsservice.validators;
 
 import it.uniroma3.siw.siweventsservice.models.Event;
-import it.uniroma3.siw.siweventsservice.models.Tool;
 import it.uniroma3.siw.siweventsservice.services.EventService;
-import it.uniroma3.siw.siweventsservice.services.ToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -46,7 +44,7 @@ public class EventValidator implements Validator {
 	 */
 	@Override
 	public void validate (Object target, Errors errors) {
-		if (this.eventService.hasDuplicate((Event) target)){
+		if (this.eventService.hasDuplicate((Event) target)) {
 			errors.reject("event.duplicate", "duplicate event");
 		}
 	}

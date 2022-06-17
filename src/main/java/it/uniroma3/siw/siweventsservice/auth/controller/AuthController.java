@@ -101,7 +101,7 @@ public class AuthController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
 		if (principal instanceof UserDetails) {
-			username = ((UserDetails)principal).getUsername();
+			username = ((UserDetails) principal).getUsername();
 		} else {
 			username = principal.toString();
 		}

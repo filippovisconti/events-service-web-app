@@ -28,21 +28,22 @@ public class UserService {
 		return users;
 	}
 
-	public int userNumber(){
+	public int userNumber () {
 		return findAll().size();
 	}
+
 	@Transactional
 	public User saveUser (User user) {
 		return userRepository.save(user);
 	}
 
 
-	public boolean hasDuplicate(User user){
+	public boolean hasDuplicate (User user) {
 		return userRepository.existsByFirstNameAndLastName(user.getFirstName(), user.getLastName());
 	}
 
 	@Transactional
-	public User save (User user){
+	public User save (User user) {
 		return userRepository.save(user);
 	}
 }

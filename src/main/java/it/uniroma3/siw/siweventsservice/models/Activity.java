@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +31,7 @@ public class Activity {
 	private List<Tool> toolList;
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals (Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Activity activity = (Activity) o;
@@ -40,7 +39,7 @@ public class Activity {
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode () {
 		return Objects.hash(name);
 	}
 }

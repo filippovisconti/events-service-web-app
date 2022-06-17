@@ -27,20 +27,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure (HttpSecurity http) throws Exception {
 		http.authorizeRequests() // authorization paragraph: qui definiamo chi può accedere a cosa
-				.antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**", "/public/**").permitAll() 	//chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
+				.antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**", "/public/**").permitAll()    //chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
 				.antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
-				.antMatchers(HttpMethod.GET, "/protected/**").hasAnyAuthority(Credentials.ADMIN_ROLE,Credentials.DEFAULT_ROLE)// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-				.antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE) 							// solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
+				.antMatchers(HttpMethod.GET, "/protected/**").hasAnyAuthority(Credentials.ADMIN_ROLE, Credentials.DEFAULT_ROLE)// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
+				.antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)                            // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
 				.antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
 				.anyRequest().authenticated() // tutti gli utenti autenticati possono accere alle pagine rimanenti
-										// login paragraph: qui definiamo come è gestita l'autenticazione
-				.and().formLogin() 		// usiamo il protocollo formlogin
-				.loginPage("/login") 	// la pagina di login si trova a /login
+				// login paragraph: qui definiamo come è gestita l'autenticazione
+				.and().formLogin()        // usiamo il protocollo formlogin
+				.loginPage("/login")    // la pagina di login si trova a /login
 				.defaultSuccessUrl("/default", false) // se il login ha successo, si viene rediretti al path /default
 				// logout paragraph: qui definiamo il logout
 				.and()
 				.logout()
-				.logoutUrl("/logout") 		// il logout è attivato con una richiesta GET a "/logout"
+				.logoutUrl("/logout")        // il logout è attivato con una richiesta GET a "/logout"
 				.logoutSuccessUrl("/") // in caso di successo, si viene reindirizzati alla /index page
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ToolRepository extends CrudRepository<Tool, Long> {
 
-	boolean existsByName(String name);
+	boolean existsByName (String name);
 }

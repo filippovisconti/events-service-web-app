@@ -1,6 +1,5 @@
 package it.uniroma3.siw.siweventsservice.services;
 
-import it.uniroma3.siw.siweventsservice.models.Event;
 import it.uniroma3.siw.siweventsservice.models.Organizer;
 import it.uniroma3.siw.siweventsservice.repositories.OrganizerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +16,26 @@ public class OrganizerService {
 	private OrganizerRepository organizerRepository;
 
 	@Transactional
-	public Organizer save (Organizer organizer){
+	public Organizer save (Organizer organizer) {
 		return organizerRepository.save(organizer);
 	}
 
 	@Transactional
-	public void deleteOrganizerById(Long id){
+	public void deleteOrganizerById (Long id) {
 		organizerRepository.deleteById(id);
 	}
 
-	public boolean hasDuplicate(Organizer organizer){
+	public boolean hasDuplicate (Organizer organizer) {
 		return organizerRepository.existsByFirstNameAndLastName(organizer.getFirstName(), organizer.getLastName());
 	}
-	
+
 	public List<Organizer> findAll () {
 		List<Organizer> l = new ArrayList<>();
 		for (Organizer i : organizerRepository.findAll()) l.add(i);
 		return l;
 	}
 
-	public int organizerNumber(){
+	public int organizerNumber () {
 		return findAll().size();
 	}
 

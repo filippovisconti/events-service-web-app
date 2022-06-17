@@ -16,18 +16,19 @@ public class ToolService {
 	private ToolRepository toolRepository;
 
 	@Transactional
-	public Tool save (Tool tool){
+	public Tool save (Tool tool) {
 		return toolRepository.save(tool);
 	}
 
 	@Transactional
-	public void deleteToolById(Long id){
+	public void deleteToolById (Long id) {
 		toolRepository.deleteById(id);
 	}
 
-	public boolean hasDuplicate(Tool tool){
+	public boolean hasDuplicate (Tool tool) {
 		return toolRepository.existsByName(tool.getName());
 	}
+
 	public List<Tool> findAll () {
 		List<Tool> l = new ArrayList<>();
 		for (Tool i : toolRepository.findAll()) l.add(i);
