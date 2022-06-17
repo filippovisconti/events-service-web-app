@@ -84,16 +84,16 @@
 						<div class="row">
 							<h4 th:text="|Participants = ${event.participants.size()}|">Participants = 4</h4>
 						</div>
-												<div class="row scrollable">
+						<div class="row scrollable">
 							<ul class="list-unstyled">
 								<li th:each="user : ${event.participants}">
 									<!-- if admin, link to user details; if user, only list of names -->
 									<a href="#" th:href="@{'/admin/user' + '/' + ${user.id}}"
 										th:text="${user.firstName} + ' ' + ${user.lastName}"
-									   sec:authorize="hasAuthority('ADMIN')">Mickey Mouse</a>
+										sec:authorize="hasAuthority('ADMIN')">Mickey Mouse</a>
 
 									<p th:text="|${user.firstName}  ${user.lastName}|"
-									   sec:authorize="hasAuthority('DEFAULT')">Minnie Mouse </p>
+										sec:authorize="hasAuthority('DEFAULT')">Minnie Mouse </p>
 								</li>
 							</ul>
 						</div>
@@ -102,7 +102,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-lg-4 align-self-center">
-				<img class="img-fluid rounded-3" th:src="@{/images/conf_room.jpg}" src="../../static/images/act.jpg"
+				<img class="img-fluid rounded-3" th:src="@{/images/event.jpg}" src="../../static/images/event.jpg"
 					alt="event picture">
 			</div>
 		</div>
