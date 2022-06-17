@@ -84,15 +84,20 @@
 						<div class="row">
 							<h4>Participants</h4>
 						</div>
-						<div class="row scrollable">
-
+												<div class="row scrollable">
 							<ul class="list-unstyled">
 								<li th:each="user : ${event.participants}">
+									<!-- if admin, link to user details; if user, only list of names -->
 									<a href="#" th:href="@{'/admin/user' + '/' + ${user.id}}"
-										th:text="${user.firstName} + ' ' + ${user.lastName}">Mickey Mouse</a>
+										th:text="${user.firstName} + ' ' + ${user.lastName}"
+									   sec:authorize="hasAuthority('ADMIN')">Mickey Mouse</a>
+
+									<p th:text="|${user.firstName}  ${user.lastName}|"
+									   sec:authorize="hasAuthority('DEFAULT')">Minnie Mouse </p>
 								</li>
 							</ul>
 						</div>
+
 					</div>
 				</div>
 			</div>
