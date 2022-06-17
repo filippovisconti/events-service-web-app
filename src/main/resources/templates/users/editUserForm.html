@@ -27,6 +27,72 @@
         </div>
     </header>
 
+    <figure class="text-center">
+        <h4>Edit a user</h4>
+    </figure>
+
+
+    <div class="cover-container align-self-center">
+
+        <form id="newUserForm" method="POST" th:action="@{/admin/edit/user/{id}(id=${user.id})}"
+              th:object="${user}">
+
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="text-danger font-monospace" th:each="err : ${#fields.globalErrors()}" th:text="${err}">
+                    this will contain
+                    errors
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <label for="userFirstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="userFirstName" th:field="*{firstName}"
+                       th:value="*{firstName}" placeholder="Jessica" required />
+                <span class="text-danger font-monospace" th:errors="*{firstName}"
+                      th:if="${#fields.hasErrors('firstName')}"> error
+						first name </span>
+            </div>
+
+            <div class="mb-3">
+                <label for="userLastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="userLastName" th:field="*{lastName}"
+                       th:value="*{lastName}" placeholder="Levy" required />
+                <span class="text-danger font-monospace" th:errors="*{lastName}"
+                      th:if="${#fields.hasErrors('lastName')}"> error
+						last name </span>
+            </div>
+            <div class="mb-3">
+                <label for="useremail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="useremail" th:field="*{email}"
+                       th:value="*{email}" placeholder="jlevy@t.com" required />
+                <span class="text-danger font-monospace" th:errors="*{email}"
+                      th:if="${#fields.hasErrors('email')}"> error
+						email </span>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="row mt-3">
+                        <legend>Select events</legend>
+                    </div>
+                    <div class="row mb-5" th:each="event: ${events}">
+                        <div class="col">
+                            <input type="checkbox" id="events" th:field="*{eventList}" name="event"
+                                   th:value="${event.id}">
+                            <label for="events" th:text="${event.name}">Event name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+
+
+
 
 
     <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
