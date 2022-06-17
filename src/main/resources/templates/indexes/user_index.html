@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
-    <title>Admin dashboard</title>
+    <title>User dashboard</title>
     <link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
         rel="stylesheet" />
     <link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet" />
@@ -24,7 +24,7 @@
             </div>
         </header>
 
-        <div class="row mb-5">
+        <div class="row mb-3">
             <div class="col">
                 <h2>Welcome,</h2>
                 <h1 th:text="|${user.firstName} ${user.lastName}|">John Doe</h1>
@@ -34,19 +34,34 @@
             </div>
         </div>
 
-        <div class="row my-4 text-danger" th:if="${user.eventList.isEmpty()}">
+        <!--<div class="row my-4 text-danger" th:if="${user.eventList.isEmpty()}">
             <h4>You haven't registered to any event yet.</h4>
-        </div>
-
+        </div>-->
+        <hr>
         <div th:unless="${user.eventList.isEmpty()}">
-            <h4>Events available</h4>
-        </div>
-        <div th:each="event : ${user.eventList}">
-            <div>
-                <a th:href="@{'/protected/event' + '/' + ${event.id}}" th:text="event.name">
-                    Event name</a>
+            <div class="row my-3">
+                <h4>Upcoming events</h4>
+            </div>
+
+            <div class="row mb-3 justify-content-center align-items-center" th:each="event : ${user.eventList}">
+                <div class="col-2">
+                    <div class="row mt-3">
+                        <a href="#" th:href="@{'/protected/event' + '/' + ${event.id}}" th:text="${event.name}">
+                            Event name</a>
+                        <p class="fw-lighter fa-1" th:text="${event.date}">2022-06-21 09:00</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <form id=" register" method="POST"
+                        th:action="@{'/protected/cancelRegistrationToEvent/' + ${event.id}}">
+
+                        <button class="btn btn-sm btn-danger" type="submit">Cancel registration</button>
+                    </form>
+
+                </div>
             </div>
         </div>
+
 
         <footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
             <div class="inner">

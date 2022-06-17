@@ -44,16 +44,44 @@ public class UserEventController {
 
 	@GetMapping("/explore")
 	public String getAllEvents (Model model) {
-		model.addAttribute("events",
-				this.eventService.findAll().stream()
-						.limit(4)
-						.collect(Collectors.toList()));
+		model.addAttribute("events", this.eventService.findAll().stream().limit(4).collect(Collectors.toList()));
 		return "indexes/explore";
 	}
 
 	@PostMapping("/registerToEvent/{id}")
 	public String registerToEvent (@PathVariable("id") Long id, Model model) {
 
+		User user = getCurrentUser();
+
+		Event e = this.eventService.findById(id);
+		if (e.addParticipant(user)) {
+			this.eventService.save(e);
+			e = this.eventService.findById(id);
+		}
+
+		model.addAttribute("event", e);
+		model.addAttribute("duration", e.getDuration());
+		return "events/event.html";
+	}
+
+
+	@PostMapping("/cancelRegistrationToEvent/{id}")
+	public String cancelRegistrationEvent (@PathVariable("id") Long id, Model model) {
+
+		User user = getCurrentUser();
+		Event e = this.eventService.findById(id);
+
+		if (e.removeParticipant(user)) {
+			this.eventService.save(e);
+			e = this.eventService.findById(id);
+		}
+
+		model.addAttribute("event", e);
+		model.addAttribute("duration", e.getDuration());
+		return "events/event.html";
+	}
+
+	private User getCurrentUser () {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
 		if (principal instanceof UserDetails) {
@@ -62,18 +90,7 @@ public class UserEventController {
 			username = principal.toString();
 		}
 		User user = credentialsService.getUserDetails(username);
-
-		Event e = this.eventService.findById(id);
-		e.getParticipants().add(user);
-		this.eventService.save(e);
-
-		model.addAttribute("event", this.eventService.findById(id));
-		float duration = 0;
-		for (Activity a : e.getActivityList()) {
-			duration += a.getDuration();
-		}
-		model.addAttribute("duration", duration);
-		return "events/event.html";
+		return user;
 	}
 
 }

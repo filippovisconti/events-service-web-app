@@ -42,7 +42,7 @@ public class Event {
 	@NotEmpty
 	private List<Activity> activityList;
 
-	@ManyToMany(mappedBy = "eventList")
+	@ManyToMany
 	private Set<User> participants;
 
 	public Event () {
@@ -60,5 +60,22 @@ public class Event {
 	@Override
 	public int hashCode () {
 		return Objects.hash(name, date);
+	}
+
+
+	public float getDuration () {
+		float duration = 0;
+		for (Activity a : this.getActivityList()) {
+			duration += a.getDuration();
+		}
+		return duration;
+	}
+
+	public boolean addParticipant (User user) {
+		return this.participants.add(user);
+	}
+
+	public boolean removeParticipant (User user) {
+		return this.participants.remove(user);
 	}
 }

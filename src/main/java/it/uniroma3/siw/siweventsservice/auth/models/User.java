@@ -30,7 +30,7 @@ public class User{
 	@Column(nullable = false)
 	private String email;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "participants")
 	private Set<Event> eventList;
 
 
@@ -39,11 +39,11 @@ public class User{
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		User user = (User) o;
-		return firstName.equals(user.firstName) && lastName.equals(user.lastName) && email.equals(user.email);
+		return firstName.equals(user.firstName) && lastName.equals(user.lastName);
 	}
 
 	@Override
 	public int hashCode () {
-		return Objects.hash(firstName, lastName, email);
+		return Objects.hash(firstName, lastName);
 	}
 }
