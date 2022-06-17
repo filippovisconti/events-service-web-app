@@ -38,7 +38,7 @@ public class UserService {
 
 
 	public boolean hasDuplicate(User user){
-		return userRepository.existsByFirstName(user.getFirstName());
+		return userRepository.existsByFirstNameAndLastName(user.getFirstName(), user.getLastName());
 	}
 
 	@Transactional
