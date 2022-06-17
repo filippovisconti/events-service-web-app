@@ -53,6 +53,17 @@
                         </div>
                     </div>
 
+                <div class="row my-3 scrollable">
+                    <div class="col-10">
+                        <ul>
+                            <li th:each="event : ${user.eventList}">
+                                <a href="#" th:href="@{'/protected/event' + '/' + ${event.id}}"
+                                   th:text="${event.name}">Whiteboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-12 col-lg-4">

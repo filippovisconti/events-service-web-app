@@ -36,4 +36,13 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+
+	public boolean hasDuplicate(User user){
+		return userRepository.existsByFirstName(user.getFirstName());
+	}
+
+	@Transactional
+	public User save (User user){
+		return userRepository.save(user);
+	}
 }
