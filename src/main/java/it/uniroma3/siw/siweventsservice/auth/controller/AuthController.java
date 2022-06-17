@@ -80,6 +80,8 @@ public class AuthController {
 
 	@GetMapping("/admin")
 	public String getAdminHomePage (Model model) {
+		User user = getCurrentUser();
+		model.addAttribute("user", user);
 		model.addAttribute("numEvents", this.eventService.eventNumber());
 		model.addAttribute("numUsers", this.userService.userNumber());
 		model.addAttribute("numOrganizers", this.organizerService.organizerNumber());
@@ -90,6 +92,12 @@ public class AuthController {
 
 	@GetMapping("/protected")
 	public String getUserHomePage (Model model) {
+		User user = getCurrentUser();
+		model.addAttribute("user", user);
+		return "indexes/user_index";
+	}
+
+	private User getCurrentUser () {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
 		if (principal instanceof UserDetails) {
@@ -98,8 +106,7 @@ public class AuthController {
 			username = principal.toString();
 		}
 		User user = credentialsService.getUserDetails(username);
-		model.addAttribute("user", user);
-		return "indexes/user_index";
+		return user;
 	}
 
 
