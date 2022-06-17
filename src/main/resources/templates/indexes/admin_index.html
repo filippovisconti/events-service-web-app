@@ -33,9 +33,10 @@
 				<h2>
 					Welcome,
 				</h2>
-				<h1>
+				<h1 th:text="|${user.firstName} ${user.lastName}|">John Doe</h1>
+				<h6>
 					<div sec:authentication="name"></div>
-				</h1>
+				</h6>
 				<!--<h4>
 					<div sec:authentication="principal.authorities"></div>
 				</h4>-->
@@ -65,6 +66,11 @@
 				<div class="row my-3">
 					<div class="col">
 						<a class="btn btn-warning" href="#" th:href="@{/public/activities}">Edit activities</a>
+					</div>
+				</div>
+				<div class="row my-3">
+					<div class="col">
+						<a class="btn btn-warning" href="#" th:href="@{/public/tools}">Edit tools</a>
 					</div>
 				</div>
 			</div>
