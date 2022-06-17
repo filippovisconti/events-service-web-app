@@ -76,6 +76,7 @@ public class AdminEventController {
 			oldEvent.setDate(event.getDate());
 			oldEvent.setOrganizer(event.getOrganizer());
 			oldEvent.setActivityList(event.getActivityList());
+			oldEvent.setParticipants(event.getParticipants());
 			this.eventService.save(oldEvent);
 			model.addAttribute("event", event);
 			return "events/event.html";

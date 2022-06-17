@@ -67,7 +67,7 @@ public class UserEventController {
 		e.getParticipants().add(user);
 		this.eventService.save(e);
 
-		model.addAttribute("event", e);
+		model.addAttribute("event", this.eventService.findById(id));
 		float duration = 0;
 		for (Activity a : e.getActivityList()) {
 			duration += a.getDuration();

@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "event_user_table")
@@ -30,7 +31,7 @@ public class User{
 	private String email;
 
 	@ManyToMany
-	private List<Event> eventList;
+	private Set<Event> eventList;
 
 
 	@Override
