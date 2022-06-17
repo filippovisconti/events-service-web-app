@@ -1,11 +1,15 @@
 package it.uniroma3.siw.siweventsservice.controllers.admin;
 
+import it.uniroma3.siw.siweventsservice.auth.models.User;
+import it.uniroma3.siw.siweventsservice.auth.service.CredentialsService;
 import it.uniroma3.siw.siweventsservice.models.Event;
 import it.uniroma3.siw.siweventsservice.services.ActivityService;
 import it.uniroma3.siw.siweventsservice.services.EventService;
+import it.uniroma3.siw.siweventsservice.services.OrganizerService;
 import it.uniroma3.siw.siweventsservice.validators.EventValidator;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -24,10 +28,14 @@ public class AdminEventController {
 	private ActivityService activityService;
 
 	@Autowired
+	private OrganizerService organizerService;
+
+	@Autowired
 	private EventValidator eventValidator;
 
 	@GetMapping("/eventForm")
 	public String getEventForm (Model model) {
+		model.addAttribute("organizersList", organizerService.findAll());
 		model.addAttribute("activities", activityService.findAll());
 		model.addAttribute("event", new Event());
 		return "events/eventForm.html";
@@ -40,15 +48,18 @@ public class AdminEventController {
 			this.eventService.save(event); // salvo un oggetto Event
 			model.addAttribute("event", this.eventService.findById(event.getId()));
 			return "events/event.html";      // presenta un pagina con la event appena salvata
-		} else
+		} else {
+			model.addAttribute("organizersList", organizerService.findAll());
+			model.addAttribute("activities", activityService.findAll());
 			return "events/eventForm.html"; // ci sono errori, torna alla form iniziale
-
+		}
 
 	}
 
 	@GetMapping("/edit/event/{id}")
 	public String getEventForm (@PathVariable Long id, Model model) {
 		model.addAttribute("activities", activityService.findAll());
+		model.addAttribute("organizersList", organizerService.findAll());
 		model.addAttribute("event", eventService.findById(id));
 		return "events/editEventForm.html";
 	}
@@ -57,8 +68,7 @@ public class AdminEventController {
 	@PostMapping("/edit/event/{id}")
 	public String editEvent (@PathVariable Long id, @Valid @ModelAttribute("event") Event event, BindingResult bindingResults, Model model) {
 		Event oldEvent = eventService.findById(id);
-		if (!oldEvent.equals(event))
-			this.eventValidator.validate(event, bindingResults);
+		if (!oldEvent.equals(event)) this.eventValidator.validate(event, bindingResults);
 		if (!bindingResults.hasErrors()) {
 			oldEvent.setId(event.getId());
 			oldEvent.setName(event.getName());
@@ -66,12 +76,15 @@ public class AdminEventController {
 			oldEvent.setDate(event.getDate());
 			oldEvent.setOrganizer(event.getOrganizer());
 			oldEvent.setActivityList(event.getActivityList());
+			oldEvent.setParticipants(event.getParticipants());
 			this.eventService.save(oldEvent);
 			model.addAttribute("event", event);
 			return "events/event.html";
 		} else {
+			model.addAttribute("activities", activityService.findAll());
+			model.addAttribute("organizersList", organizerService.findAll());
 			return "events/editEventForm.html";
-				}
+		}
 
 	}
 

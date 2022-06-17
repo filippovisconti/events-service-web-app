@@ -70,15 +70,17 @@
 				<div class="row my-3 align-self-center justify-content-center">
 					<div class="col-md-9 mb-3">
 						<label class="form-label" for="datetimepicker4Input">Date and time:</label>
-						<div class='input-group' id='datetimepicker4'>
-							<input id='datetimepicker4Input' type='datetime-local' class='form-control'
-								th:field="*{date}" placeholder="01/01/2022 09:30 AM" aria-labelledby="dtpickerHelp"
+						<div class='input-group' id='datetimepicker4'><!--type='datetime-local'-->
+							<input id='datetimepicker4Input'  type="text"  class='form-control'
+								th:field="*{date}" placeholder="2022/12/31 09:30"
 								required />
 							<span class='input-group-text'>
 								<span class='fa-solid fa-calendar'></span>
 								<!--Picker not working yet-->
 							</span>
 						</div>
+						<span class="text-danger" th:errors="*{date}" th:if="${#fields.hasErrors('date')}">
+							error date</span>
 					</div>
 				</div>
 

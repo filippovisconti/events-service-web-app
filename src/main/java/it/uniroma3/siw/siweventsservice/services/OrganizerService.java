@@ -36,6 +36,10 @@ public class OrganizerService {
 		return l;
 	}
 
+	public int organizerNumber(){
+		return findAll().size();
+	}
+
 	public Organizer findById (Long id) {
 		var p = organizerRepository.findById(id);
 		if (p.isPresent()) return p.get();

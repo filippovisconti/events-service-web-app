@@ -41,7 +41,8 @@
 					<label for="activityname" class="form-label">Name</label>
 					<input type="text" class="form-control" id="activityname" th:field="*{name}" th:value="*{name}"
 						placeholder="Meeting" required />
-
+					<span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}">
+						error name</span>
 				</div>
 
 				<div class="mb-3">
@@ -49,6 +50,9 @@
 						<span class="input-group-text">Description</span>
 						<textarea class="form-control" aria-label="Description" th:field="*{description}"
 							th:value="*{description}" placeholder="Enter here the description" required></textarea>
+						<span class="text-danger" th:errors="*{description}"
+							th:if="${#fields.hasErrors('description')}">
+							error description</span>
 					</div>
 
 				</div>
@@ -61,6 +65,8 @@
 						<span class="input-group-text">hours</span>
 					</div>
 
+					<span class="text-danger" th:errors="*{duration}" th:if="${#fields.hasErrors('duration')}">
+						error duration</span>
 				</div>
 				<div class="row mb-5">
 					<div class="col">

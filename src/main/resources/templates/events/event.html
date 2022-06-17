@@ -47,8 +47,11 @@
 						<h2 th:text="${event.name}">Conference 101</h2>
 					</div>
 					<div class="col-12 col-md-5 my-auto">
-						<h5> curated by <a href="#" th:href="@{'/protected/organizer' + '/' + ${organizer.id}}"
-								th:text="${event.organizer}">John Doe</a> </h5>
+						<p> curated by <br>
+							<a href="#" th:href="@{'/protected/organizer' + '/' + ${event.organizer.id}}"
+								th:text="${event.organizer}"> John Doe
+							</a>
+						</p>
 					</div>
 				</div>
 				<div class="row my-3">
@@ -57,7 +60,7 @@
 						</p>
 					</div>
 					<div class="col-12 col-md-5">
-						<p th:text="|${duration} hours|"> 2 hours </p>
+						<p th:text="|duration: ${duration} hours|">duration: 2 hours </p>
 						<!--valore calcolato come somma delle durate delle attività-->
 					</div>
 				</div>
@@ -102,8 +105,11 @@
 		<div class="row my-2" th:if="${event}">
 
 			<div class="col align-self-center">
-				<a class="btn btn-primary" href="#"> Register</a>
+				<form id="register" method="POST" th:action="@{'/protected/registerToEvent/' + ${event.id}}">
+					<button class="btn btn-primary" type="submit">Register</button>
+				</form>
 			</div>
+
 		</div>
 
 		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
