@@ -35,7 +35,7 @@
 
 			<form id="newActivityForm" method="POST" th:action="@{/admin/edit/activity/{id}(id=${activity.id})}"
 				th:object="${activity}">
-				<div class="error-text" th:if="${#fields.hasGlobalErrors()}">
+				<div class="text-danger" th:if="${#fields.hasGlobalErrors()}">
 					<p class="" th:each="err : ${#fields.globalErrors()}" th:text="${err}"> this will contain errors
 					</p>
 				</div>
@@ -51,6 +51,9 @@
 						<span class="input-group-text">Description</span>
 						<textarea class="form-control" aria-label="Description" th:field="*{description}"
 							th:value="*{description}" placeholder="Entere here the description" required></textarea>
+						<span class="text-danger" th:errors="*{description}"
+							th:if="${#fields.hasErrors('description')}">
+							error description</span>
 					</div>
 
 				</div>
@@ -62,14 +65,15 @@
 							th:field="*{duration}" th:value="*{duration}" placeholder="e.g.: 2,5" />
 						<span class="input-group-text">hours</span>
 					</div>
-
+					<span class="text-danger" th:errors="*{duration}" th:if="${#fields.hasErrors('duration')}">
+						error duration</span>
 				</div>
-				<div class="row">
+				<div class="row scrollable mb-5">
 					<div class="col">
 						<div class="row mt-3">
 							<legend>Select tools</legend>
 						</div>
-						<div class="row mb-5" th:each="tool: ${tools}">
+						<div class="row" th:each="tool: ${tools}">
 							<div class="col">
 								<input type="checkbox" id="tools" th:field="*{toolList}" name="tool"
 									th:value="${tool.id}">
