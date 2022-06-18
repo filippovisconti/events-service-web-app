@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -93,7 +94,7 @@ public class AdminEventController {
 	public String deleteEvent (@PathVariable("id") Long id, Model model) {
 		try {
 			this.eventService.deleteEventById(id);
-			return "events/events.html";
+			return "redirect:/public/events";
 		} catch (Exception e) {
 			return "error.html";
 		}
