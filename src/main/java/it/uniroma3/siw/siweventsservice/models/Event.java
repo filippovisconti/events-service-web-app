@@ -53,12 +53,12 @@ public class Event {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Event event = (Event) o;
-		return name.equals(event.name) && date.equals(event.date);
+		return name.equals(event.name) && organizer.equals(event.organizer);
 	}
 
 	@Override
 	public int hashCode () {
-		return Objects.hash(name, date);
+		return Objects.hash(name, organizer.hashCode());
 	}
 
 
