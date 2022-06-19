@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -43,7 +42,9 @@ public class AdminEventController {
 		this.eventValidator.validate(event, bindingResult);
 		if (!bindingResult.hasErrors()) { // se i dati sono corretti
 			this.eventService.save(event); // salvo un oggetto Event
-			model.addAttribute("event", this.eventService.findById(event.getId()));
+			Event e = this.eventService.findById(event.getId());
+			model.addAttribute("event", e);
+			model.addAttribute("duration", e.getDuration());
 			return "events/event.html";      // presenta un pagina con la event appena salvata
 		} else {
 			model.addAttribute("organizersList", organizerService.findAll());
@@ -75,6 +76,7 @@ public class AdminEventController {
 			oldEvent.setActivityList(event.getActivityList());
 			this.eventService.save(oldEvent);
 			model.addAttribute("event", event);
+			model.addAttribute("duration", event.getDuration());
 			return "events/event.html";
 		} else {
 			model.addAttribute("activities", activityService.findAll());

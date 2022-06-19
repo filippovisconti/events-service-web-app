@@ -1,98 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 
 <head th:replace="fragments/components :: baseHeadLinks((~{::title}), (~{::link}))">
 	<title>Events</title>
-	<link th:href="@{/css/bootstrap/css/bootstrap.css}" href="../../static/css/bootstrap/css/bootstrap.css"
-		rel="stylesheet">
-	<link th:href="@{/css/custom/base.css}" href="../../static/css/custom/base.css" rel="stylesheet">
+	<link href="../../static/css/bootstrap/css/bootstrap.css" rel="stylesheet"
+		  th:href="@{/css/bootstrap/css/bootstrap.css}">
+	<link href="../../static/css/custom/base.css" rel="stylesheet" th:href="@{/css/custom/base.css}">
 </head>
 
 <body class="text-center bg-event">
 
-	<div class="container d-flex h-100 p-3 mx-auto flex-column">
+<div class="container d-flex h-100 p-3 mx-auto flex-column">
 
-		<header class="masthead mb-auto">
-			<div class="inner">
-				<h3 class="masthead-brand">EventManagement</h3>
-				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasAuthority('DEFAULT')"> Home
-					</a>
-					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')"> Dashboard
-					</a>
+	<header class="masthead mb-auto">
+		<div class="inner">
+			<h3 class="masthead-brand">EventManagement</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<a class="nav-link" href="#" sec:authorize="!isFullyAuthenticated()" th:href="@{/}"> Home </a>
+				<a class="nav-link" href="#" sec:authorize="hasAuthority('DEFAULT')" th:href="@{/protected}"> Home
+				</a>
+				<a class="nav-link" href="#" sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}"> Dashboard
+				</a>
 
-					<a class="nav-link active" href="#" th:href="@{/public/events}"> Events </a>
-					<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
-					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()"> Login </a>
-					<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
-				</nav>
-			</div>
-		</header>
-
-
-		<div class="row bg-dark my-4 text-danger" th:if="${events.isEmpty()}">
-			<h4>No Events Available</h4>
+				<a class="nav-link active" href="#" th:href="@{/public/events}"> Events </a>
+				<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
+				<a class="nav-link" href="#" sec:authorize="!isFullyAuthenticated()" th:href="@{/login}"> Login </a>
+				<a class="nav-link" href="#" sec:authorize="isFullyAuthenticated()" th:href="@{/logout}">Logout</a>
+			</nav>
 		</div>
-
-		<div class="row my-4" th:unless="${events.isEmpty()}">
-			<h4> Available events</h4>
-
-		</div>
-
-		<div class="row my-2 justify-content-center" th:unless="${events.isEmpty()}">
-
-			<div class="col-3">
-				<h5>Name</h5>
-			</div>
-			<div class="col-3">
-				<h5>Organizer</h5>
-			</div>
-			<div class="col-3">
-				<h5>Date</h5>
-			</div>
-			<div class="col-3" sec:authorize="hasAuthority('ADMIN')">
-				<h5>Edit</h5>
-			</div>
-		</div>
-		<!--/*@thymesVar id="events" type="java.util.List<Event>"*/-->
-		<div class="row mb-2 justify-content-center" th:each="event : ${events}">
-			<div class="col-3"> <a href="#" th:href="@{'/protected/event' + '/' + ${event.id}}"
-					th:text="${event.name}">Meeting</a> </div>
-
-			<div class="col-3">
-				<a href="#" th:href="@{'/protected/organizer' + '/' + ${event.organizer.id}}"
-					th:text="${event.organizer}">John Doe</a>
-			</div>
-			<div class="col-3">
-				<p th:text="${event.date}"> 20/06/2022 15:00 </p>
-			</div>
-			<div class="col-3" sec:authorize="hasAuthority('ADMIN')">
-				<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
-					<a class="btn btn-danger btn-sm" href="#"
-						th:href="@{'/admin/delete/event' + '/' + ${event.id}}">Remove</a>
-					<a class="btn btn-warning btn-sm" href="#"
-						th:href="@{'/admin/edit/event' + '/' + ${event.id}}">Edit</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt-5" sec:authorize="hasAuthority('ADMIN')">
-			<div class="col">
-				<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/eventForm}">Add event</a>
-			</div>
-		</div>
+	</header>
 
 
-		<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
-			<div class="inner">
-				<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
-					Lucrezia Sorrentino</p>
-			</div>
-		</footer>
+	<div class="row bg-dark my-4 text-danger" th:if="${events.isEmpty()}">
+		<h4>No Events Available</h4>
+	</div>
+
+	<div class="row my-4" th:unless="${events.isEmpty()}">
+		<h4> Available events</h4>
 
 	</div>
+
+	<div class="row my-2 justify-content-center" th:unless="${events.isEmpty()}">
+
+		<div class="col-3">
+			<h5>Name</h5>
+		</div>
+		<div class="col-3">
+			<h5>Organizer</h5>
+		</div>
+		<div class="col-3">
+			<h5>Date</h5>
+		</div>
+		<div class="col-3" sec:authorize="hasAuthority('ADMIN')">
+			<h5>Edit</h5>
+		</div>
+	</div>
+	<!--/*@thymesVar id="events" type="java.util.List<Event>"*/-->
+	<div class="row mb-2 justify-content-center" th:each="event : ${events}">
+		<div class="col-3"><a href="#" th:href="@{'/protected/event' + '/' + ${event.id}}"
+							  th:text="${event.name}">Meeting</a></div>
+
+		<div class="col-3">
+			<a href="#" th:href="@{'/protected/organizer' + '/' + ${event.organizer.id}}"
+			   th:text="${event.organizer}">John Doe</a>
+		</div>
+		<div class="col-3">
+			<p th:text="${event.date}"> 20/06/2022 15:00 </p>
+		</div>
+		<div class="col-3" sec:authorize="hasAuthority('ADMIN')">
+			<div aria-label="buttons" class="btn-group btn-group-sm" role="group">
+				<a class="btn btn-danger btn-sm" href="#"
+				   th:href="@{'/admin/delete/event' + '/' + ${event.id}}">Remove</a>
+				<a class="btn btn-warning btn-sm" href="#"
+				   th:href="@{'/admin/edit/event' + '/' + ${event.id}}">Edit</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-5" sec:authorize="hasAuthority('ADMIN')">
+		<div class="col">
+			<a class="btn btn-success btn-lg" href="#" th:href="@{/admin/eventForm}">Add event</a>
+		</div>
+	</div>
+
+
+	<footer class="mastfoot mt-auto" th:replace="fragments/components :: footer">
+		<div class="inner">
+			<p>&copy;2022 <a href="https://www.filippovisconti.com">Filippo Visconti</a>, Allegra Strippoli,
+				Lucrezia Sorrentino</p>
+		</div>
+	</footer>
+
+</div>
 </body>
 
 </html>

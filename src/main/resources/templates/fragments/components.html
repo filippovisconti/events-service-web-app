@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	  xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="baseHeadLinks(title, links)">
-	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
-	<meta name="description" content="A management system for an event organizer.">
-	<meta name="author" content="Filippo Visconti">
+	<meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport"/>
+	<meta content="A management system for an event organizer." name="description">
+	<meta content="Filippo Visconti" name="author">
 	<title th:replace="${title}">EventManagement</title>
 	<!-- default styles and scripts -->
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
@@ -15,48 +15,47 @@
 
 	<!--<script th:src="@{/js/jquery.min.js}"></script>-->
 
-	<th:block th:replace="${links}" />
+	<th:block th:replace="${links}"/>
 
 </head>
 
 <body class="text-center">
-	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-		<header class="masthead mb-auto" th:fragment="header">
-			<div class="inner">
-				<h3 class="masthead-brand">EventManagement</h3>
-				<nav class="nav nav-masthead justify-content-center">
-					<!--<a class="nav-link active" href="#">Home</a>-->
-					<a class="nav-link" href="#" th:href="@{/}" sec:authorize="!isFullyAuthenticated()"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/protected}" sec:authorize="hasAuthority('DEFAULT')"> Home </a>
-					<a class="nav-link" href="#" th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')"> Dashboard </a>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+	<header class="masthead mb-auto" th:fragment="header">
+		<div class="inner">
+			<h3 class="masthead-brand">EventManagement</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<!--<a class="nav-link active" href="#">Home</a>-->
+				<a class="nav-link" href="#" sec:authorize="!isFullyAuthenticated()" th:href="@{/}"> Home </a>
+				<a class="nav-link" href="#" sec:authorize="hasAuthority('DEFAULT')" th:href="@{/protected}"> Home </a>
+				<a class="nav-link" href="#" sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}"> Dashboard </a>
 
-					<a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
-					<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
-					<a class="nav-link" href="#" th:href="@{/login}" sec:authorize="!isFullyAuthenticated()"> Login </a>
-					<a class="nav-link" href="#" th:href="@{/logout}" sec:authorize="isFullyAuthenticated()">Logout</a>
-				</nav>
-			</div>
-		</header>
+				<a class="nav-link" href="#" th:href="@{/public/events}"> Events </a>
+				<a class="nav-link" href="#" th:href="@{/public/activities}"> Activities </a>
+				<a class="nav-link" href="#" sec:authorize="!isFullyAuthenticated()" th:href="@{/login}"> Login </a>
+				<a class="nav-link" href="#" sec:authorize="isFullyAuthenticated()" th:href="@{/logout}">Logout</a>
+			</nav>
+		</div>
+	</header>
 
-		<main role="main" class="inner cover">
-			<h1 class="cover-heading">Cover your page.</h1>
-			<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit
-				the text, and add your own fullscreen background photo to make it your own.</p>
-			<p class="lead">
-				<a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-			</p>
-		</main>
+	<main class="inner cover" role="main">
+		<h1 class="cover-heading">Cover your page.</h1>
+		<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit
+			the text, and add your own fullscreen background photo to make it your own.</p>
+		<p class="lead">
+			<a class="btn btn-lg btn-secondary" href="#">Learn more</a>
+		</p>
+	</main>
 
-		<footer class="mastfoot mt-auto" th:fragment="footer">
-			<div class="inner">
-				<p>&copy;2022 <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo
-						Visconti</a>, Allegra Strippoli,
-					Lucrezia Sorrentino</p>
-			</div>
-		</footer>
-	</div>
+	<footer class="mastfoot mt-auto" th:fragment="footer">
+		<div class="inner">
+			<p>&copy;2022 <a class="text-decoration-none" href="https://www.filippovisconti.com">Filippo
+				Visconti</a>, Allegra Strippoli,
+				Lucrezia Sorrentino</p>
+		</div>
+	</footer>
+</div>
 </body>
-
 
 
 </html>

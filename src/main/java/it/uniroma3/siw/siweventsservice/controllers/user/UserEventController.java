@@ -34,11 +34,7 @@ public class UserEventController {
 	public String getEvent (@PathVariable("id") Long id, Model model) {
 		Event e = this.eventService.findById(id);
 		model.addAttribute("event", e);
-		float duration = 0;
-		for (Activity a : e.getActivityList()) {
-			duration += a.getDuration();
-		}
-		model.addAttribute("duration", duration);
+		model.addAttribute("duration", e.getDuration());
 		return "events/event";
 	}
 
