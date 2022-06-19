@@ -20,7 +20,7 @@ each event has
 
 An organizer can take care of one or more events.
 
-For each organizer, it's
+For each organizer, its
 
 - first name,
 - last name
@@ -48,7 +48,7 @@ Standard user will be able to see the list of events which they have signed up f
 
 Admins, instead, can create every object and manage every single aspect of the system.
 
-### URI standard
+### URL convention
 
 Resources available to **unauthenticated** users will start with the "/public/" prefix.
 
