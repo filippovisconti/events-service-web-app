@@ -21,6 +21,7 @@ public class PublicEventController {
 	public String getAllEvents (Model model) {
 		List<Event> events = eventService.findAll();
 		model.addAttribute("events", events);
+		model.addAttribute("numEvents", events.size());
 		return "events/events";
 	}
 

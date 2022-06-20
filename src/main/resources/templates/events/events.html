@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="row my-4" th:unless="${events.isEmpty()}">
-		<h4> Available events</h4>
+		<h4 th:text="|${numEvents} available events|"> 5 Available events</h4>
 
 	</div>
 

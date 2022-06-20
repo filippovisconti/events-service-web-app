@@ -57,7 +57,7 @@ public class UserEventController {
 
 		model.addAttribute("event", e);
 		model.addAttribute("duration", e.getDuration());
-		return "events/event.html";
+		return "redirect:/protected/event/" + id;
 	}
 
 
