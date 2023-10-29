@@ -1,11 +1,11 @@
 # siw-events-service
 
 A web app that helps in the management of an event management company, built with Springboot and deployed to Azure.
-The web app is available at [this link](https://siw-events.azurewebsites.net)
+
 
 ### Requisites
 
-We are going to design and implement a web application for an event management company.
+We designed and implemented a web application for an event management company.
 
 The company can take care of various types of events:
 each event has
